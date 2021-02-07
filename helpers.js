@@ -16,28 +16,31 @@ const pool = new Pool({
 // Fixed!
 const emailExists = function(userEmail) {
 
-  console.log("\n userEmail in function: ", userEmail)
+  if (userEmail) {
+    console.log("\n userEmail in function: ", userEmail)
 
-  const query = `
-     SELECT email
-     FROM users 
-     WHERE email = '${userEmail}';
-    `
-
-  console.log("\n query: ", query);
-    // const values = [userEmail]
-
-    return pool.query(query)
-    .then(res => {
-      console.log("\n res.rows[0] email: ", res.rows[0].email);
-
-      if (res.rows[0].email === userEmail) {
-        console.log("res.rows[0] insife if: ", res.rows[0]);
-        return true;
-      } else {
-        return false;
-      }
-    });
+    const query = `
+       SELECT email
+       FROM users 
+       WHERE email = '${userEmail}';
+      `
+  
+    console.log("\n query: ", query);
+      // const values = [userEmail]
+  
+      return pool.query(query)
+      .then(res => {
+        // console.log("\n res.rows[0] email: ", res.rows[0].email);
+  
+        if (res.rows[0].email === userEmail) {
+          // console.log("res.rows[0] insife if: ", res.rows[0]);
+          return true;
+        } else {
+          return false;
+        }
+      });
+  }
+  return false;
 };
 
 // helper function to check if a users id already exists in our database
@@ -62,10 +65,10 @@ const isAuthenticated = function(userid, users) {
 
     return pool.query(query)
     .then(res => {
-      console.log("res.rows[0] outside if statement", res.rows[0]);
+      // console.log("res.rows[0] outside if statement", res.rows[0]);
 
       if (res.rows[0].master_password === userPassword) {
-        console.log("res.rows[0] in if statement", res.rows[0]);
+        // console.log("res.rows[0] in if statement", res.rows[0]);
         return res.rows[0].id;
       } else {
         return false;

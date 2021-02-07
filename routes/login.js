@@ -24,54 +24,30 @@ loginRoute.get("/", (req, res) => {
 loginRoute.post("/", (req, res) => {
   const { email, password } = req.body;
   console.log("email from user input: ", email);
-  const validUserEmail = emailExists(email);
+  const errors = {
+    email: "Must provide email!",
+    password: "Must provide password!",
+    emailNoExist: "Invalid email!",
+    invalidPassword: "Invalid Password!"
+  };
 
+  const validUserEmail = emailExists(email);
   validUserEmail.then((value) => {
     console.log("\n value inside of validUserEmail returned promise: ", value);
 
     // console.log("email inside of promise", email);
     // console.log("password inside of promise", password);
-    
-    const isAuthenticated = passwordValidator(password, email);
 
-    // thennable isAuthenticated promise from above to do stuff!
+    const isAuthenticated = passwordValidator(password, email);
     isAuthenticated.then((value) => {
       console.log("\n value inside of isAuthenticated returned promise: ", value);
 
-      const errors = {
-        email: "Must provide email!",
-        password: "Must provide password!",
-        emailNoExist: "Invalid email!",
-        invalidPassword: "Invalid Password!"
-      };
-
-      if (!email) {
-        const templateVars = {
-          error: errors.email
-        };
-        res.status(400).render('error', templateVars);
-      } else if (!password) {
-        const templateVars = {
-          error: errors.password
-        };
-        res.status(400).render('error', templateVars);
-      } else if (!validUserEmail) {
-        const templateVars = {
-          error: errors.emailNoExist
-        };
-        res.status(400).render('error', templateVars);
-      } else if (!isAuthenticated) {
-        const templateVars = {
-          error: errors.invalidPassword
-        };
-        res.status(400).render('error', templateVars);
-      } else {
-        console.log("isAuthenticated we want YEE: ", value);
-        req.session = value;
-        res.redirect('/');
-      }
+      console.log("isAuthenticated we want YEE: ", value);
+      req.session = value;
+      res.redirect('/');
     });
   });
 });
+
 
 module.exports = loginRoute;
