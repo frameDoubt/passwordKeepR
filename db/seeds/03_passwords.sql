@@ -3,11 +3,11 @@ INSERT INTO passwords (user_id, organisations_id, category, url, password_text, 
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (1, 2, 'work related', 'www.worklogin.com', '9873masdsa7', 'Worklogin');
 
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (2, 3, 'entertainment', 'www.youtube.com', 'fkjashfjaks8', 'Youtube');
-INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (2, 3, 'social', 'www.reddit.com', 'fasfhkashfkj', 'Reddit');
-INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (2, 3, 'work related', 'www.worklogin.com', '9873masdsa7', 'Worklogin');
+INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (2, 3, 'social', 'www.4chan.com', 'fasfhkashfkj', '4chan');
+INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (2, 3, 'work related', 'www.worklogin2.com', '9873masdsa7', 'Worklogin2');
 
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (3, 3, 'social', 'www.instagram.com', 'kljfasj', 'Instagram');
-INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (3, 3, 'social', 'www.twitter.com', 'dlsadasdfa', 'Twitter');
+INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (3, 3, 'social', 'www.tweeter.com', 'dlsadasdfa', 'Tweeter');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (3, 3, 'work related', 'www.worklogin3.com', '9fasfs', 'Worklogin3');
 
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title) VALUES (4, NULL, 'entertainment', 'www.disneyplus.com', 'fsafasfsafa', 'Disney');
