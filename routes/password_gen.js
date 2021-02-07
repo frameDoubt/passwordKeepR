@@ -5,13 +5,13 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-// include db module from dbConn.js 
+// include db module from dbConn.js
 const express = require('express');
 const passwordRouter  = express.Router();
 const { db, Pool } = require('../db/dbConn');
 
 // PG database client/connection setup
-db.connect();
+// db.connect();
 
 // get routes for password generator page
 passwordRouter.get("/", (req, res) => {
