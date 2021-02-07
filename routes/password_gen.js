@@ -8,7 +8,17 @@
 // include db module from dbConn.js
 const express = require('express');
 const passwordRouter  = express.Router();
+const app = express();
 const { db, Pool } = require('../db/dbConn');
+
+// require and use cookie session to store user ids for cookie sessions
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1'],
+
+  maxAge: 24 * 60 * 60 * 1000
+}));
 
 // PG database client/connection setup
 // db.connect();

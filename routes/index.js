@@ -1,5 +1,15 @@
 const express = require('express');
 const indexRoute  = express.Router();
+const app = express();
+
+// require and use cookie session to store user ids for cookie sessions
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1'],
+
+  maxAge: 24 * 60 * 60 * 1000
+}));
 
 // GET route
 indexRoute.get("/", (req, res) => {
