@@ -15,11 +15,16 @@ const { db, Pool } = require('../db/dbConn');
 
 // get routes for password generator page
 passwordRouter.get("/", (req, res) => {
+  // query to db for the current logged in user, and check what orginizations they are part of
+   // send that information back to the client for the orginzation drop down menu to pick from 
   res.render("password_gen");
 });
 
 // POSTS routes - TODO - take in db here
 passwordRouter.post("/", (req, res) => {
+
+  // console log stuff that comes from clint
+
   console.log('hello world!');
   res.status(200).send('Working test!');
 });

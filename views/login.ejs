@@ -1,0 +1,36 @@
+<%- include('partials/_header') %>
+
+  <head>
+    <!-- bootstrap Latest compiled and minified CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <main style="margin: 1em;">
+      <h3>Login</h3>
+      <!-- took this user registration form from my previous CS50 final project to save time: -->
+      <!-- https://github.com/jallen2034/CS50-Final-Project/blob/master/Final%20Project/templates/register.html -->
+      <div class="login">
+        <form action="/login" method="post">
+          <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="email" placeholder="email" type="email">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="password" placeholder="master password" type="password">
+          </div>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+    </main>
+  </body>
