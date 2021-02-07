@@ -31,23 +31,24 @@ loginRoute.post("/", (req, res) => {
     invalidPassword: "Invalid Password!"
   };
 
-  const validUserEmail = emailExists(email);
+  // promise chain that will first check if the users email exists against our db and then validate their password
+  let validUserEmail = emailExists(email);
   validUserEmail.then((value) => {
-    console.log("\n value inside of validUserEmail returned promise: ", value);
-
-    // console.log("email inside of promise", email);
-    // console.log("password inside of promise", password);
-
-    const isAuthenticated = passwordValidator(password, email);
-    isAuthenticated.then((value) => {
-      console.log("\n value inside of isAuthenticated returned promise: ", value);
-
-      console.log("isAuthenticated we want YEE: ", value);
-      req.session = value;
-      res.redirect('/');
-    });
-  });
+    return passwordValidator(password, email);
+  }).then((value => {
+    req.session = value;
+    res.redirect('/');
+  }));
 });
 
 
 module.exports = loginRoute;
+
+
+// isAuthenticated.then((value) => {
+//   console.log("\n value inside of isAuthenticated returned promise: ", value);
+
+//   console.log("isAuthenticated we want YEE: ", value);
+//   req.session = value;
+//   res.redirect('/');
+// });
