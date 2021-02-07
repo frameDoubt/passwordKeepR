@@ -24,11 +24,12 @@ const emailExists = function (userEmail) {
     return pool.query(query)
       .then(res => {
 
-        if (res.rows[0].email === userEmail) {
-          return true;
-        } else {
+        // if email not found in db, res.rows.length === 0, we catch this
+        if (res.rows.length === 0) {
           return false;
-        }
+        } else {
+          return true;
+        } 
       });
   }
   return false;

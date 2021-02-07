@@ -20,7 +20,7 @@ loginRoute.get("/", (req, res) => {
 });
 
 /* POST route
-   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then */
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then */
 loginRoute.post("/", (req, res) => {
   const { email, password } = req.body;
   console.log("email from user input: ", email);
@@ -48,8 +48,24 @@ loginRoute.post("/", (req, res) => {
    * async error handling for when a username or password is invalid will happen in here - TODO */
   let validUserEmail = emailExists(email);
   validUserEmail.then((value) => {
+
+    if (!value) {
+      const templateVars = {
+        error: errors.emailNoExist
+      };
+      res.status(400).render('error', templateVars);
+    }
+
     return passwordValidator(password, email);
   }).then((value) => {
+
+    if (!value) {
+      const templateVars = {
+        error: errors.invalidPassword
+      };
+      res.status(400).render('error', templateVars);
+    }
+
     req.session = value;
     res.redirect('/');
   }).catch(error => {
