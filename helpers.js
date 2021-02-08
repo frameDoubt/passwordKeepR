@@ -67,7 +67,7 @@ const isAuthenticated = function (userId) {
     return pool.query(query)
       .then(res => {
 
-        console.log("res value: \n", res.rows[0].id);
+        // console.log("res value: \n", res.rows[0].id);
 
         if (res.rows.length === 0) {
           return false;
@@ -108,7 +108,10 @@ const getUserOrganizations = function (userId) {
   JOIN passwords ON passwords.organisations_id = organisations.id
   WHERE user_id = ${userId};
   `
-  return pool.query(query);
+  return pool.query(query)
+    .then(res => {
+      return res.rows;
+    });
 };
 
 // export these helper functions to where they are needed
