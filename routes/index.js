@@ -25,6 +25,7 @@ indexRoute.get("/", (req, res) => {
       getPasswordsbyUsers(value)
       .then((passwordsByUser) => {
         const templateVars = { value: id, users: passwordsByUser };
+        console.log(templateVars)
         res.render("index", templateVars);
       }).catch(error => {
         console.log(error)

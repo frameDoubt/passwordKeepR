@@ -32,7 +32,7 @@ loginRoute.post("/", (req, res) => {
     invalidPassword: "Invalid Password!"
   };
 
-  // syncronous error handling before our promise chain below even starts 
+  // syncronous error handling before our promise chain below even starts
   if (!email) {
     const templateVars = {
       error: errors.email

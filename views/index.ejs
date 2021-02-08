@@ -38,6 +38,28 @@
         </thead>
         <tbody>
           <% for(let user in users) { %>
+            <tr> <% if (value === users[user].user_id) { %>
+              <td><%= users[user].url %></td>
+              <td><%= users[user].password_text %></td>
+              <td><%= users[user].title %></td>
+              <td><%= users[user].category %></td>
+              <td><%= users[user].name %></td>
+              <% } %> </tr>
+          <% } %>
+        </tbody>
+
+        <thead>
+          <tr>
+            <th scope="col">URLs</th>
+            <th scope="col">Passwords</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Organisation Name</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let user in users) { %>
             <tr>
               <td><%= users[user].url %></td>
               <td><%= users[user].password_text %></td>
