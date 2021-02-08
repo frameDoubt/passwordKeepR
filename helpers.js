@@ -90,7 +90,7 @@ const getPasswordsbyUsers = function (userId) {
     const query = `
     SELECT url, password_text, title, category
     FROM passwords
-    WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = '${userId}');
+    WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = 3);
     `;
     return pool.query(query)
       .then(res => {
@@ -99,11 +99,9 @@ const getPasswordsbyUsers = function (userId) {
       })
   }
   return Promise.resolve(false);
-}
+};
 
 // export these helper functions to where they are needed
 module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers };
 
 
-
-/*     */

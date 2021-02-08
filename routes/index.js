@@ -19,21 +19,16 @@ indexRoute.get("/", (req, res) => {
   const id = req.session.user_id;
   const idIsExisting = isAuthenticated(id);
   idIsExisting.then((value) => {
-    /* write a helper function to filter the passwords for this logged in users company and
-     * return them to the index page in template VARS - TODO */
+    console.log("value hi: ", value);
+
     if (value) {
-      const templateVariablePromise = getPasswordsbyUsers(value)
-      templateVariablePromise.then ((passwordsByUser) => {
-        const templateVars = { value, users: passwordsByUser };
-        console.log('templateVars', templateVars)
-        // console.log('value line 28', value)
-        // console.log('value line 29', passwordsByUser)
-        // console.log("templateVars", templateVars);
-        res.render("index", templateVars);
-      })
+      return templateVariablePromise = getPasswordsbyUsers(value)
     } else {
       res.redirect('/login');
     }
+  }).then((passwordsByUser) => {
+    const templateVars = { value: id, users: passwordsByUser };
+    res.render("index", templateVars);
   }).catch(error => {
     console.log(error)
   });
