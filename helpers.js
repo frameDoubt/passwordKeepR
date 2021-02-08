@@ -101,6 +101,16 @@ const getPasswordsbyUsers = function (userId) {
   return Promise.resolve(false);
 };
 
+const getUserOrganizations = function (userId) {
+  const query = `
+  SELECT DISTINCT organisations.name AS name
+  FROM organisations
+  JOIN passwords ON passwords.organisations_id = organisations.id
+  WHERE user_id = ${userId};
+  `
+  return pool.query(query);
+}
+
 // export these helper functions to where they are needed
 module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers };
 
