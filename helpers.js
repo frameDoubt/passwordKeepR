@@ -31,10 +31,10 @@ const emailExists = function (userEmail) {
           return false;
         } else {
           return true;
-        } 
+        }
       });
   }
-  
+
   return Promise.resolve(false);
 };
 
@@ -42,8 +42,8 @@ const emailExists = function (userEmail) {
 const passwordValidator = function (userPassword, userEmail) {
 
   const query = `
-     SELECT id, master_password 
-     FROM users 
+     SELECT id, master_password
+     FROM users
      WHERE email = '${userEmail}';
     `
 
@@ -64,26 +64,44 @@ const isAuthenticated = function (userId) {
 
   if (userId) {
     const query = `
-    SELECT id 
+    SELECT id
     FROM users
     WHERE id = '${userId}'
     `;
-  
+
     return pool.query(query)
       .then(res => {
-  
+
         console.log("res value: \n", res.rows[0].id);
 
         if (res.rows.length === 0) {
           return false;
         } else {
           return res.rows[0].id;
-        } 
+        }
       });
   }
 
   return Promise.resolve(false);
 };
 
+const getPasswordsbyUsers = function (userId) {
+  if (userId) {
+    const query = `
+    SELECT url, password_text, title, category
+    FROM passwords
+    WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = 3);
+    `;
+    return pool.query(query)
+      .then(res => {
+        // console.log(res.rows)
+        return res.rows
+      })
+  }
+  return Promise.resolve(false);
+};
+
 // export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated };
+module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers };
+
+

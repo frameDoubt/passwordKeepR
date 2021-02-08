@@ -2,7 +2,7 @@ const express = require('express');
 const indexRoute = express.Router();
 const app = express();
 app.set("view engine", "ejs");
-const { emailExists, passwordValidator, isAuthenticated } = require("../helpers.js");
+const { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers } = require("../helpers.js");
 
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -19,21 +19,19 @@ indexRoute.get("/", (req, res) => {
   const id = req.session.user_id;
   const idIsExisting = isAuthenticated(id);
   idIsExisting.then((value) => {
-
     console.log("value hi: ", value);
 
-    /* write a helper function to filter the passwords for this logged in users company and 
-     * return them to the index page in template VARS - TODO */
     if (value) {
-      const templateVars = { value };
-      console.log("templateVars", templateVars);
-      res.render("index", templateVars);
+      return templateVariablePromise = getPasswordsbyUsers(value)
     } else {
       res.redirect('/login');
     }
+  }).then((passwordsByUser) => {
+    const templateVars = { value: id, users: passwordsByUser };
+    res.render("index", templateVars);
   }).catch(error => {
     console.log(error)
-  });;
+  });
 });
 
 // POSTS routes - TODO - take in db here
@@ -43,10 +41,10 @@ indexRoute.get("/", (req, res) => {
 // query database for password user selected they want to delete, then delete it from db
 // then render the index page without that password
 
-// Post route where the user can edit their passwords 
+// Post route where the user can edit their passwords
 // post to "/edit"
 // query database for password user selected they want to edit, then edit it in db
 // then render the index page with that edited information/password
 
-// export modules 
+// export modules
 module.exports = indexRoute;
