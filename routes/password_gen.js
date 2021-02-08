@@ -10,7 +10,7 @@ const express = require('express');
 const passwordRouter = express.Router();
 const app = express();
 const { db, Pool } = require('../db/dbConn');
-const { emailExists, passwordValidator, isAuthenticated } = require("../helpers.js");
+const { emailExists, passwordValidator, isAuthenticated, getUserOrganizations } = require("../helpers.js");
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -30,13 +30,21 @@ app.use(cookieSession({
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
   const idIsExisting = isAuthenticated(id);
-  idIsExisting.then((value) => {
+  let usersOrgs;
+  getUserOrganizations(id)
+    .then(
+      res => {
+        // console.log(res)
+        usersOrgs = res;
+      });
 
-    console.log("value hi: ", value);
+  idIsExisting.then((value) => {
+    // console.log(usersOrgs);
+    // console.log("value hi: ", value);
 
     // write a helper function to filter the passwords for this logged in users company - TODO
     if (value) {
-      const templateVars = { value };
+      const templateVars = { value, usersOrgs };
       res.render("password_gen", templateVars);
     } else {
       res.redirect('/login');
