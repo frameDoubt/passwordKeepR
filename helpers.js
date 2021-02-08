@@ -16,26 +16,21 @@ const pool = new Pool({
 /* helper function to check if a users email address already exists in our database - FIXED!
  * return a promise with false inside it if no userId exists */
 const emailExists = function (userEmail) {
+  const query = `
+      SELECT email
+      FROM users
+      WHERE email = '${userEmail}';
+    `
+  return pool.query(query)
+    .then(res => {
 
-  if (userEmail) {
-    const query = `
-       SELECT email
-       FROM users
-       WHERE email = '${userEmail}';
-      `
-    return pool.query(query)
-      .then(res => {
-
-        // if email not found in db, res.rows.length === 0, we catch this
-        if (res.rows.length === 0) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-  }
-
-  return Promise.resolve(false);
+      // if email not found in db, res.rows.length === 0, we catch this
+      if (res.rows.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    });
 };
 
 // helper function that takes in req.body.email as "userEmail" and the users object, added hashing! much security! - WORKS!
@@ -66,7 +61,7 @@ const isAuthenticated = function (userId) {
     const query = `
     SELECT id
     FROM users
-    WHERE id = '${userId}'
+    WHERE id = ${userId}
     `;
 
     return pool.query(query)
@@ -85,22 +80,26 @@ const isAuthenticated = function (userId) {
   return Promise.resolve(false);
 };
 
+// helper function to get all passwords by a userID and render it to the index page client side eventually
 const getPasswordsbyUsers = function (userId) {
+  console.log("userId we want ot make sure exists: ", userId);
+
   if (userId) {
     const query = `
     SELECT url, password_text, title, category
     FROM passwords
-    WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = 3);
+    WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = ${userId} LIMIT 1);
     `;
     return pool.query(query)
       .then(res => {
-        // console.log(res.rows)
-        return res.rows
+        return res.rows;
       })
   }
+
   return Promise.resolve(false);
 };
 
+// helper function to get organizations for a user to populate the org dropdown box when they make a password
 const getUserOrganizations = function (userId) {
   const query = `
   SELECT DISTINCT organisations.name AS name
@@ -109,9 +108,7 @@ const getUserOrganizations = function (userId) {
   WHERE user_id = ${userId};
   `
   return pool.query(query);
-}
+}; 
 
 // export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers };
-
-
+module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations };
