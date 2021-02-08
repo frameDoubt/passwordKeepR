@@ -11,7 +11,7 @@
  <!--boostrap JS and jquery scipts to get hamburger menu in our navbar working-->
 <body>
 
-  
+
   <%- include('partials/_header') %>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -22,6 +22,34 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
+    <main style="margin: 1em;">
+      <h3>My Passwords</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">URLs</th>
+            <th scope="col">Passwords</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Organisation Name</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let user in users) { %>
+            <tr>
+              <td><%= users[user].url %></td>
+              <td><%= users[user].password_text %></td>
+              <td><%= users[user].title %></td>
+              <td><%= users[user].category %></td>
+              <td><%= users[user].name %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </main>
 
 
 </body>
