@@ -10,15 +10,27 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 
+/* require and use cookie session to store user ids for cookie sessions
+ * https://www.npmjs.com/package/cookie-session */
+ const cookieSession = require('cookie-session');
+ app.use(cookieSession({
+   name: 'session',
+   keys: ['key1'],
+ 
+   maxAge: 24 * 60 * 60 * 1000
+ }));
+
 /* old way of connecting to PG db from server.js file before modularizing this process
  * PG database client/connection setup
  * const { Pool } = require('pg');
  * const dbParams = require('./lib/db.js');
  * const db = new Pool(dbParams);
- * db.connect();
- * Load the logger first so all (static) HTTP requests are logged to STDOUT
+ * db.connect(); */
+ 
+/* load the logger first so all (static) HTTP requests are logged to STDOUT
  * 'dev' = Concise output colored by response status for development use.
- * The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes. */
+ * the :status token will be colored red for server error codes, yellow for client error codes, 
+ * cyan for redirection codes, and uncolored for all other codes. */
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
@@ -35,15 +47,18 @@ app.use(express.static("public"));
  * note: Feel free to replace the example routes below with your own */
 const createPasswordRoutes = require("./routes/password_gen");
 const loginRoute = require("./routes/login");
+const logoutRoute = require("./routes/logout");
 const indexRoute = require("./routes/index");
 
 /* GET & POST requests here 
  * Mount all resource routes
  * Note: Feel free to replace the example routes below with your own
  * Home page */
+
+app.use("/login", loginRoute);
 app.use("/", indexRoute);
 app.use("/password_gen", createPasswordRoutes);
-app.use("/login", loginRoute);
+app.use("/logout", logoutRoute);
 
 // app listener
 app.listen(PORT, () => {

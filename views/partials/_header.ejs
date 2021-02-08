@@ -7,6 +7,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <% if (value) { %>
     <div class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -14,5 +15,10 @@
         </li>
       </ul>
     </div>
+      <h5 style= "padding-left: 3em; padding-right: 1em">Logged in!</h5>
+      <form action="/logout" method="POST">
+        <button class = "btn btn-outline-dark" type="submit">Logout</button>
+      </form>
+    <% } %>      
   </nav>
 </header>
