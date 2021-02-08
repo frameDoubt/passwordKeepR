@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const loginRoute = express.Router();
-const { emailExists, passwordValidator } = require("../helpers.js");
+const { emailExists, passwordValidator, isAuthenticated } = require("../helpers.js");
 
 /* require and use cookie session to store user ids for cookie sessions
  * https://www.npmjs.com/package/cookie-session */
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
-  name: 'user_id',
+  name: 'session',
   keys: ['key1'],
 
   maxAge: 24 * 60 * 60 * 1000
@@ -16,7 +16,8 @@ app.use(cookieSession({
 /* GET route
  * https://stackoverflow.com/questions/29941208/express-error-typeerror-router-use-requires-middleware-function-but-got-a-o */
 loginRoute.get("/", (req, res) => {
-  res.render("login");
+  const templateVars = { value: false };
+  res.render("login", templateVars);
 });
 
 /* POST route
@@ -66,7 +67,8 @@ loginRoute.post("/", (req, res) => {
       res.status(400).render('error', templateVars);
     }
 
-    req.session = value;
+    req.session.user_id = value;
+    console.log("req.session id",  req.session.user_id);
     res.redirect('/');
   }).catch(error => {
     console.log(error)
