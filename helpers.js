@@ -86,8 +86,9 @@ const getPasswordsbyUsers = function (userId) {
 
   if (userId) {
     const query = `
-    SELECT url, password_text, title, category, id, user_id, organisations_id
+    SELECT url, password_text, title, category, passwords.id, user_id, organisations_id, organisations.name
     FROM passwords
+    JOIN organisations ON organisations.id = passwords.organisations_id
     WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = ${userId} LIMIT 1);
     `;
     return pool.query(query)
