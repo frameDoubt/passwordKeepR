@@ -29,22 +29,13 @@ app.use(cookieSession({
  * send that information back to the client for the orginzation drop down menu to pick from */
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
-  const idIsExisting = isAuthenticated(id);
-  let usersOrgs;
-  getUserOrganizations(id)
-    .then(
-      res => {
-        // console.log(res)
-        usersOrgs = res;
-      });
-
-  idIsExisting.then((value) => {
-    // console.log(usersOrgs);
-    // console.log("value hi: ", value);
-
+  getUserOrganizations(id).then((usersOrgs) => {
+    console.log("usersOrgs hi: ", usersOrgs);
+    const organisations = [...usersOrgs];
     // write a helper function to filter the passwords for this logged in users company - TODO
-    if (value) {
-      const templateVars = { value, usersOrgs };
+    console.log('this is the copied array:', organisations);
+    if (organisations) {
+    const templateVars = { value: id, organisations };
       res.render("password_gen", templateVars);
     } else {
       res.redirect('/login');
