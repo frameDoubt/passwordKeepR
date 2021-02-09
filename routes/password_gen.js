@@ -32,7 +32,7 @@ passwordRouter.get("/", (req, res) => {
   getUserOrganizations(id).then((usersOrgs) => {
     const organisations = [...usersOrgs];
     // write a helper function to filter the passwords for this logged in users company - TODO
-    if (organisations) {
+    if (id) {
     const templateVars = { value: id, organisations };
       res.render("password_gen", templateVars);
     } else {
@@ -45,7 +45,8 @@ passwordRouter.get("/", (req, res) => {
 
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
-  console.log('hello world!');
+  console.log('this is the req:', req.body)
+  console.log('this is the res', res.body);
   res.status(200).send('Working test!');
 });
 
