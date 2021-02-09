@@ -30,10 +30,8 @@ app.use(cookieSession({
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
   getUserOrganizations(id).then((usersOrgs) => {
-    console.log("usersOrgs hi: ", usersOrgs);
     const organisations = [...usersOrgs];
     // write a helper function to filter the passwords for this logged in users company - TODO
-    console.log('this is the copied array:', organisations);
     if (organisations) {
     const templateVars = { value: id, organisations };
       res.render("password_gen", templateVars);
