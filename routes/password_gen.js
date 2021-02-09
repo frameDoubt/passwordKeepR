@@ -11,6 +11,7 @@ const passwordRouter = express.Router();
 const app = express();
 const { db, Pool } = require('../db/dbConn');
 const { emailExists, passwordValidator, isAuthenticated, getUserOrganizations } = require("../helpers.js");
+const generator = require('generate-password');
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -45,7 +46,7 @@ passwordRouter.get("/", (req, res) => {
 
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
-  console.log('this is the req:', req.body)
+  console.log('this is the req:', req.body);
   console.log('this is the res', res.body);
   res.status(200).send('Working test!');
 });
