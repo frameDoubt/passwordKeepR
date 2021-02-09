@@ -49,6 +49,7 @@ const createPasswordRoutes = require("./routes/password_gen");
 const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const indexRoute = require("./routes/index");
+const deletePasswordRoute = require("./routes/deletePassword");
 
 /* GET & POST requests here 
  * Mount all resource routes
@@ -59,6 +60,7 @@ app.use("/login", loginRoute);
 app.use("/", indexRoute);
 app.use("/password_gen", createPasswordRoutes);
 app.use("/logout", logoutRoute);
+app.use("/deletePassword", deletePasswordRoute);
 
 // app listener
 app.listen(PORT, () => {

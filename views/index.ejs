@@ -8,67 +8,98 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
- <!--boostrap JS and jquery scipts to get hamburger menu in our navbar working-->
+<!--boostrap JS and jquery scipts to get hamburger menu in our navbar working-->
+
 <body>
-
-
   <%- include('partials/_header') %>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 
     <main style="margin: 1em;">
       <h3>My Passwords</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">URLs</th>
-            <th scope="col">Passwords</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-            <th scope="col">Organisation Name</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(let user in users) { %>
-            <tr> <% if (value === users[user].user_id) { %>
-              <td><%= users[user].url %></td>
-              <td><%= users[user].password_text %></td>
-              <td><%= users[user].title %></td>
-              <td><%= users[user].category %></td>
-              <td><%= users[user].name %></td>
-              <% } %> </tr>
-          <% } %>
-        </tbody>
-        <thead>
-          <tr>
-            <th scope="col">URLs</th>
-            <th scope="col">Passwords</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-            <th scope="col">Organisation Name</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for(let user in users) { %>
-            <tr>
-              <td><%= users[user].url %></td>
-              <td><%= users[user].password_text %></td>
-              <td><%= users[user].title %></td>
-              <td><%= users[user].category %></td>
-              <td><%= users[user].name %></td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
+      <% for(let user in users) { %>
+        <% if (value===users[user].user_id) { %>
+          <% console.log("hello!: ", users[user].user_id) %>
+          <div class=" password_button" dataId="<%= users[user].id %>">
+            <div>
+              <h5>
+                <%= users[user].url %>
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <%= users[user].password_text %>
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <%= users[user].title %>
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <%= users[user].category %>
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <%= users[user].name %>
+              </h5>
+            </div>
+            <div>
+              <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
+                type="submit">Delete Password</button>
+            </div>
+            <div>
+              <button class="btn btn-outline-primary" id="<%= users[user].id %>" type="submit">Edit Password</button>
+            </div>
+            </div>
+            <% } %>
+              <% } %>
+                <h3>Company Passwords</h3>
+                <% for(let user in users) { %>
+                  <div>
+                    <h5>
+                      <%= users[user].url %>
+                    </h5>
+                  </div>
+                  <div>
+                    <h5>
+                      <%= users[user].password_text %>
+                    </h5>
+                  </div>
+                  <div>
+                    <h5>
+                      <%= users[user].title %>
+                    </h5>
+                  </div>
+                  <div>
+                    <h5>
+                      <%= users[user].category %>
+                    </h5>
+                  </div>
+                  <div>
+                    <h5>
+                      <%= users[user].name %>
+                    </h5>
+                  </div>
+                  <div>
+                    <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
+                      type="submit">Delete Password</button>
+                  </div>
+                  <div>
+                    <button class="btn btn-outline-primary" id="<%= users[user].id %>" type="submit">Edit
+                      Password</button>
+                  </div>
+                  <% } %>
+
+                    <script src="../scripts/index.js"></script>
     </main>
 </body>
 
