@@ -18,7 +18,7 @@ const { emailExists, passwordValidator, isAuthenticated, deletePasswordFromDb } 
 deletePasswordRoute.post("/", (req, res) => {
   const buttonId = req.body.clicked_button;
   deletePasswordFromDb(buttonId);
-  res.send("Delete complete!")
+  res.send(buttonId)
 });
 
 module.exports = deletePasswordRoute;
