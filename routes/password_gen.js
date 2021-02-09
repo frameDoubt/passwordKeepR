@@ -44,6 +44,12 @@ passwordRouter.get("/", (req, res) => {
   });;
 });
 
+// function update counter for password length range input
+$(document).ready(function() {
+  
+});
+
+
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
   console.log('this is the req:', req.body);

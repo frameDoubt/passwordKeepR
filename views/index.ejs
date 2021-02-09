@@ -26,7 +26,7 @@
       <% for(let user in users) { %>
         <% if (value===users[user].user_id) { %>
           <% console.log("hello!: ", users[user].user_id) %>
-          <div class=" password_button" dataId="<%= users[user].id %>">
+          <div class="personal_passwords" data-id="<%= users[user].id %>">
             <div>
               <h5>
                 <%= users[user].url %>
@@ -64,7 +64,7 @@
               <% } %>
                 <h3>Company Passwords</h3>
                 <% for(let user in users) { %>
-                  <div class="password_button_company" dataId="<%= users[user].id %>">
+                  <div class="company_passwords" data-id="<%= users[user].id %>">
                     <div>
                       <h5>
                         <%= users[user].url %>
@@ -91,7 +91,7 @@
                       </h5>
                     </div>
                     <div>
-                      <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
+                      <button class="btn btn-outline-danger remove_from_password_buttons_company" id="<%= users[user].id %>"
                         type="submit">Delete Password</button>
                     </div>
                     <div>
