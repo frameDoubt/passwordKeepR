@@ -24,7 +24,7 @@ loginRoute.get("/", (req, res) => {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then */
 loginRoute.post("/", (req, res) => {
   const { email, password } = req.body;
-  console.log("email from user input: ", email);
+  // console.log("email from user input: ", email);
   const errors = {
     email: "Must provide email!",
     password: "Must provide password!",
@@ -68,7 +68,7 @@ loginRoute.post("/", (req, res) => {
     }
 
     req.session.user_id = value;
-    console.log("req.session id",  req.session.user_id);
+   //console.log("req.session id",  req.session.user_id);
     res.redirect('/');
   }).catch(error => {
     console.log(error)

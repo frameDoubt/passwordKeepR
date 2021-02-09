@@ -57,7 +57,13 @@
                 type="submit">Delete Password</button>
             </div>
             <div>
-              <button class="btn btn-outline-primary" id="<%= users[user].id %>" type="submit">Edit Password</button>
+              <button class="btn btn-outline-primary edit_password" id="<%= users[user].id %>" type="submit" style="display:block">Edit Password</button>
+            </div>
+            <div>
+              <button class="btn btn-outline-secondary cancel_edits" id="<%= users[user].id %>" type="submit" style="display:none">Cancel changes</button>
+            </div>
+            <div>
+              <button class="btn btn-outline-success submit_edits" id="<%= users[user].id %>" type="submit" style="display:none">Submit changes</button>
             </div>
             </div>
             <% } %>
@@ -95,8 +101,14 @@
                         type="submit">Delete Password</button>
                     </div>
                     <div>
-                      <button class="btn btn-outline-primary" id="<%= users[user].id %>" type="submit">Edit
+                      <button class="btn btn-outline-primary edit_password_company" id="<%= users[user].id %>" type="submit" style="display:block">Edit
                         Password</button>
+                    </div>
+                    <div>
+                      <button class="btn btn-outline-secondary cancel_edits_company" id="<%= users[user].id %>" type="submit" style="display:none">Cancel Changes</button>
+                    </div>
+                    <div>
+                      <button class="btn btn-outline-success submit_edits_company" id="<%= users[user].id %>" type="submit" style="display:none">Submit Changes</button>
                     </div>
                   </div>
                   <% } %>
