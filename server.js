@@ -16,7 +16,7 @@ const morgan = require('morgan');
  app.use(cookieSession({
    name: 'session',
    keys: ['key1'],
- 
+
    maxAge: 24 * 60 * 60 * 1000
  }));
 
@@ -26,10 +26,10 @@ const morgan = require('morgan');
  * const dbParams = require('./lib/db.js');
  * const db = new Pool(dbParams);
  * db.connect(); */
- 
+
 /* load the logger first so all (static) HTTP requests are logged to STDOUT
  * 'dev' = Concise output colored by response status for development use.
- * the :status token will be colored red for server error codes, yellow for client error codes, 
+ * the :status token will be colored red for server error codes, yellow for client error codes,
  * cyan for redirection codes, and uncolored for all other codes. */
 app.use(morgan('dev'));
 
@@ -50,8 +50,9 @@ const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const indexRoute = require("./routes/index");
 const deletePasswordRoute = require("./routes/deletePassword");
+const editPasswordRoute = require("./routes/editPassword")
 
-/* GET & POST requests here 
+/* GET & POST requests here
  * Mount all resource routes
  * Note: Feel free to replace the example routes below with your own
  * Home page */
@@ -61,6 +62,7 @@ app.use("/", indexRoute);
 app.use("/password_gen", createPasswordRoutes);
 app.use("/logout", logoutRoute);
 app.use("/deletePassword", deletePasswordRoute);
+app.use("/editPassword", editPasswordRoute);
 
 // app listener
 app.listen(PORT, () => {
