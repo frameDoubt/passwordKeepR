@@ -47,7 +47,7 @@ $(document).ready(function () {
   // attaches listeners to personal passwords - to edit - TODO
   for (let i = 0; i < edit_button.length; i++) {
     edit_button[i].onclick = function (event) {
-      button_id = edit_button[i].id;
+      const button_id = edit_button[i].id;
       cachedPassword = $(event.target).parent().parent().find('.password_to_edit').val();
       edit_button_id = edit_button[i].id;
       edit_button[i].style.display = "none";
@@ -56,11 +56,17 @@ $(document).ready(function () {
       $(event.target).parent().parent().find('.password_to_edit').prop('disabled', false);
 
       submit_button[i].onclick = function () {
-        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id } })
+        const password_text = $(event.target).parent().parent().find('.password_to_edit').val();
+        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id, password_text: password_text } })
         .then(function (response) {
           // $(`div.personal_passwords[data-id=${response}]`)[0].style.display = "none";
           // $(`div.company_passwords[data-id=${response}]`)[0].style.display = "none";
-          console.log("response from server with id test: ", response);
+          // console.log("response from server with id test: ", response);
+          edit_button[i].style.display = "block";
+          cancel_button[i].style.display = "none";
+          submit_button[i].style.display = "none";
+          $(event.target).parent().parent().find('.password_to_edit').val(response)
+          $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
         });
       }
 
@@ -96,7 +102,7 @@ $(document).ready(function () {
         edit_button2[i].style.display = "block";
         cancel_button2[i].style.display = "none";
         submit_button2[i].style.display = "none";
-        $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
+        $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
       }
     }
   }

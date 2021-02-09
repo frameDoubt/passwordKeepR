@@ -109,6 +109,28 @@ const deletePasswordFromDb = function (buttonId) {
 
 }
 
+// helper function to edit password from the database when passed the button id. The button id should match the password primary key.
+const editPasswordFromDb = function (buttonId, newPassword) {
+  const query = `
+    UPDATE passwords
+    SET password_text = '${newPassword}'
+    WHERE id = ${buttonId}
+  ;
+  `
+  return pool.query(query);
+}
+
+// helper function to retrieve new password
+const getEditedPassword = function (buttonId) {
+  const query =  `
+    SELECT password_text
+    FROM passwords
+    WHERE id = ${buttonId}
+    ;  
+  `
+  return pool.query(query);
+}
+
 // helper function to get organizations for a user to populate the org dropdown box when they make a password
 const getUserOrganizations = function (userId) {
   const query = `
@@ -124,4 +146,4 @@ const getUserOrganizations = function (userId) {
 };
 
 // export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb };
+module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb, editPasswordFromDb, getEditedPassword };
