@@ -40,10 +40,6 @@ $(document).ready(function () {
     }
   }
 
-  // figure out a way when the edit button is clicked, to change password h5 text into a editable form
-  // when this changes, we want to edit button to change into a 'cancel changes' and 'submit edited password' button
-
-
   // attaches listeners to personal passwords - to edit - TODO
   for (let i = 0; i < edit_button.length; i++) {
     edit_button[i].onclick = function (event) {
@@ -65,7 +61,7 @@ $(document).ready(function () {
           edit_button[i].style.display = "block";
           cancel_button[i].style.display = "none";
           submit_button[i].style.display = "none";
-          $(event.target).parent().parent().find('.password_to_edit').val(response)
+          $(event.target).parent().parent().find('.password_to_edit').val(response);
           $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
         });
       }
