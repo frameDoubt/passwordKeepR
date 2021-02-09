@@ -67,8 +67,6 @@ const isAuthenticated = function (userId) {
     return pool.query(query)
       .then(res => {
 
-        // console.log("res value: \n", res.rows[0].id);
-
         if (res.rows.length === 0) {
           return false;
         } else {
@@ -100,6 +98,17 @@ const getPasswordsbyUsers = function (userId) {
   return Promise.resolve(false);
 };
 
+// helper function to delete password from the database when passed the button id. The button id should match the password primary key.
+const deletePasswordFromDb = function (buttonId) {
+  const query = `
+    DELETE FROM passwords
+    WHERE passwords.id = ${buttonId}
+  ;
+  `
+  return pool.query(query);
+
+}
+
 // helper function to get organizations for a user to populate the org dropdown box when they make a password
 const getUserOrganizations = function (userId) {
   const query = `
@@ -115,4 +124,4 @@ const getUserOrganizations = function (userId) {
 };
 
 // export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations };
+module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb };

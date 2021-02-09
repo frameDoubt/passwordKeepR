@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const deletePasswordRoute = express.Router();
+const { emailExists, passwordValidator, isAuthenticated, deletePasswordFromDb } = require("../helpers.js");
+
 
 /* require and use cookie session to store user ids for cookie sessions
  * https://www.npmjs.com/package/cookie-session */
@@ -14,10 +16,9 @@ const deletePasswordRoute = express.Router();
 
 // POST route
 deletePasswordRoute.post("/", (req, res) => {
-  console.log(req.body)
-  const button_id = req.body.clicked_button;
-  console.log("button_id from client!: " , button_id);
-  res.send("hello!")
+  const buttonId = req.body.clicked_button;
+  deletePasswordFromDb(buttonId);
+  res.send("Delete complete!")
 });
 
 module.exports = deletePasswordRoute;

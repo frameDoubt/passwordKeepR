@@ -1,7 +1,8 @@
 $(document).ready(function () {
   console.log("Hello world");
 
-  let password_div = document.getElementsByClassName("password_button");
+  let passwordDiv = document.getElementsByClassName("password_button");
+  let passwordDiv2 = document.getElementsByClassName("password_button_company");
   let del_button = document.getElementsByClassName("remove_from_password_buttons");
   console.log("del_button:", del_button);
 
@@ -16,7 +17,8 @@ $(document).ready(function () {
       $.ajax({ method: 'POST', url: '/deletePassword', data: { clicked_button: button_id } })
         .then(function (response) {
           console.log(response);
-          password_div[i].style.display = "none"
+          passwordDiv[i].style.display = "none"
+          passwordDiv2[i].style.display = "none"
         });
     }
   }
