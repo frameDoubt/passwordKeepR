@@ -7,6 +7,5 @@ CREATE TABLE passwords (
   organisations_id INTEGER REFERENCES organisations(id) ON DELETE CASCADE,
   category VARCHAR(255) NOT NULL,
   url VARCHAR(255) NOT NULL,
-  password_text VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL
+  password_text VARCHAR(255) NOT NULL
 );

@@ -83,7 +83,7 @@ const getPasswordsbyUsers = function (userId) {
 
   if (userId) {
     const query = `
-    SELECT url, password_text, title, category, passwords.id, user_id, organisations_id, organisations.name
+    SELECT url, password_text, category, passwords.id, user_id, organisations_id, organisations.name
     FROM passwords
     JOIN organisations ON organisations.id = passwords.organisations_id
     WHERE passwords.organisations_id = (SELECT organisations_id FROM users_organisations WHERE user_id = ${userId} LIMIT 1);
@@ -145,11 +145,11 @@ const getUserOrganizations = function (userId) {
 };
 
 //will be used to enter a new login/password to the database
-const newPasswordToDatabase = function (userId, orgId, category, url, password_text, title) {
+const newPasswordToDatabase = function (userId, orgId, category, url, password_text) {
   pool.query(`SELECT id FROM organisations WHERE organisations.name = '${orgName}';`)
   const query =`
-  INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title)
-  VALUES (${userId}, ${orgId}, '${category}', '${url}', '${password_text}', '${title}');
+  INSERT INTO passwords (user_id, organisations_id, category, url, password_text)
+  VALUES (${userId}, ${orgId}, '${category}', '${url}', '${password_text}');
   `;
   return pool.query(query);
 };

@@ -90,7 +90,7 @@ passwordRouter.post("/", (req, res) => {
   getOrgIdFromName(req.body.organisationName)
     .then((val) => {
       const orgId = val;
-      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, thePassword, 'titleexample');
+      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, thePassword);
       res.send('This worked!');
     });
 });
