@@ -31,21 +31,20 @@ app.use(cookieSession({
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
 
-  getUserOrganizations(id)
-    .then((usersOrgs) => {
-      console.log(usersOrgs);
-    const organisations = [...usersOrgs];
-    // write a helper function to filter the passwords for this logged in users company - TODO
-    if (id) {
-    const templateVars = { value: id, organisations };
-      res.render("password_gen", templateVars);
-    } else {
+  isAuthenticated(id)
+  .then((userId) => {
+    if (!userId) {
       res.redirect('/login');
     }
-    })
-    .catch(error => {
+    return getUserOrganizations(userId);
+  })
+  .then((usersOrgs) => {
+    const organisations = [...usersOrgs];
+    const templateVars = { value: id, organisations };
+    res.render("password_gen", templateVars);
+  }).catch(error => {
     console.log(error)
-    });;
+  });
 });
 
 // POSTS routes - TODO - take in db here - TEST

@@ -80,7 +80,6 @@ const isAuthenticated = function (userId) {
 
 // helper function to get all passwords by a userID and render it to the index page client side eventually
 const getPasswordsbyUsers = function (userId) {
-  console.log("userId we want ot make sure exists: ", userId);
 
   if (userId) {
     const query = `
@@ -155,3 +154,29 @@ const newPasswordToDatabase= function (userId, orgId, category, url, password_te
 
 // export these helper functions to where they are needed
 module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb, editPasswordFromDb, getEditedPassword, newPasswordToDatabase};
+/* https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+ * sorts the array that later renders the dom elements by the url alpabetically */
+const sortUserPasswords = function (userPasswordArr) {
+  return userPasswordArr.sort((a, b) => {
+    if (a.url < b.url){
+      return -1;
+    }
+    if (a.url > b.url){
+      return 1;
+    }
+    return 0;
+  });
+}
+
+// export these helper functions to where they are needed
+module.exports = {
+  emailExists,
+  passwordValidator,
+  isAuthenticated,
+  getPasswordsbyUsers,
+  getUserOrganizations,
+  deletePasswordFromDb,
+  editPasswordFromDb,
+  getEditedPassword,
+  sortUserPasswords
+ };

@@ -2,7 +2,7 @@ const express = require('express');
 const indexRoute = express.Router();
 const app = express();
 app.set("view engine", "ejs");
-const { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers } = require("../helpers.js");
+const { isAuthenticated, getPasswordsbyUsers, sortUserPasswords } = require("../helpers.js");
 
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -24,8 +24,8 @@ indexRoute.get("/", (req, res) => {
     } else {
       getPasswordsbyUsers(value)
       .then((passwordsByUser) => {
-        const templateVars = { value: id, users: passwordsByUser };
-        // console.log(templateVars)
+        const sortedpasswordsByUser = sortUserPasswords(passwordsByUser);
+        const templateVars = { value: id, users: sortedpasswordsByUser };
         res.render("index", templateVars);
       }).catch(error => {
         console.log(error)
@@ -34,16 +34,4 @@ indexRoute.get("/", (req, res) => {
   })
 });
 
-// POSTS routes - TODO - take in db here
-// post to "/delete"
-
-// Post route to handle when user deletes a password from their saves passwords
-  // query database for password user selected they want to delete, then delete it from db
-  // then render the index page without that password
-
-// Post route where the user can edit their passwords - post to "/edit"
-  // query database for password user selected they want to edit, then edit it in db
-  // then render the index page with that edited information/password
-
-// export modules
 module.exports = indexRoute;
