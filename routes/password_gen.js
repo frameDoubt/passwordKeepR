@@ -30,18 +30,21 @@ app.use(cookieSession({
  * send that information back to the client for the orginzation drop down menu to pick from */
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
-  getUserOrganizations(id).then((usersOrgs) => {
-    const organisations = [...usersOrgs];
-    // write a helper function to filter the passwords for this logged in users company - TODO
-    if (id) {
-    const templateVars = { value: id, organisations };
-      res.render("password_gen", templateVars);
-    } else {
+
+  isAuthenticated(id)
+  .then((userId) => {
+    if (!userId) {
       res.redirect('/login');
     }
+    return getUserOrganizations(userId);
+  })
+  .then((usersOrgs) => {
+    const organisations = [...usersOrgs];
+    const templateVars = { value: id, organisations };
+    res.render("password_gen", templateVars);
   }).catch(error => {
     console.log(error)
-  });;
+  });
 });
 
 // POSTS routes - TODO - take in db here - TEST
@@ -71,7 +74,3 @@ passwordRouter.post("/", (req, res) => {
 
 // export whole router
 module.exports = passwordRouter;
-
-/*
-// taks the JSON object returned fromfront end, and populate values
-*/
