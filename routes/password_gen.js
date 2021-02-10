@@ -8,10 +8,10 @@
 // include db module from dbConn.js
 const express = require('express');
 const passwordRouter = express.Router();
+const generator = require('generate-password');
 const app = express();
 const { db, Pool } = require('../db/dbConn');
-const { emailExists, passwordValidator, isAuthenticated, getUserOrganizations } = require("../helpers.js");
-const generator = require('generate-password');
+const { isAuthenticated, getUserOrganizations } = require("../helpers.js");
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -44,15 +44,34 @@ passwordRouter.get("/", (req, res) => {
   });;
 });
 
-
-
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
-  console.log('this is the req:', req.body);
-  console.log('this is the res', res.body);
-  res.status(200).send('Working test!');
+  console.log('were expecting our form inputs to come in here as a object: ', req.body);
+
+  console.log("req.body.url: ", req.body.url);
+  console.log("req.body.length: ", req.body.length);
+  console.log("req.body.numbers: ", req.body.numbers);
+  console.log("req.body.uppercase: ", req.body.uppercase);
+  console.log("req.body.lowercase: ", req.body.lowercase);
+  console.log("req.body.symbols: ", req.body.symbols);
+
+  // console.log('this is the res', res.body);
+  const passwordGenerator = function () {
+    return password = generator.generate({
+      length: req.body.length,
+      numbers: true,
+      upperCase: false,
+      lowerCase: false,
+      symbols: true
+    });
+};
+  console.log(passwordGenerator());
+  res.send('This worked!');
 });
 
 // export whole router
 module.exports = passwordRouter;
 
+/*
+// taks the JSON object returned fromfront end, and populate values
+*/
