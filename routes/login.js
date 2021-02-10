@@ -25,9 +25,6 @@ loginRoute.get("/", (req, res) => {
    syncronous error handling before our promise chain below even starts */
 loginRoute.post("/", (req, res) => {
   const { email, password } = req.body;
-  console.log("email from client: ", email);
-  console.log("password from client: ", password);
-
   const errors = {
     email: "Must provide email!",
     password: "Must provide password!",
