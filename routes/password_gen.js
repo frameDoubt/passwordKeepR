@@ -11,7 +11,7 @@ const passwordRouter = express.Router();
 const generator = require('generate-password');
 const app = express();
 const { db, Pool } = require('../db/dbConn');
-const { isAuthenticated, getUserOrganizations } = require("../helpers.js");
+const { isAuthenticated, getUserOrganizations, newPasswordToDatabase } = require("../helpers.js");
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -30,7 +30,10 @@ app.use(cookieSession({
  * send that information back to the client for the orginzation drop down menu to pick from */
 passwordRouter.get("/", (req, res) => {
   const id = req.session.user_id;
-  getUserOrganizations(id).then((usersOrgs) => {
+
+  getUserOrganizations(id)
+    .then((usersOrgs) => {
+      console.log(usersOrgs);
     const organisations = [...usersOrgs];
     // write a helper function to filter the passwords for this logged in users company - TODO
     if (id) {
@@ -39,9 +42,10 @@ passwordRouter.get("/", (req, res) => {
     } else {
       res.redirect('/login');
     }
-  }).catch(error => {
+    })
+    .catch(error => {
     console.log(error)
-  });;
+    });;
 });
 
 // POSTS routes - TODO - take in db here - TEST
@@ -59,13 +63,23 @@ passwordRouter.post("/", (req, res) => {
   const passwordGenerator = function () {
     return password = generator.generate({
       length: req.body.length,
-      numbers: true,
-      upperCase: false,
-      lowerCase: false,
-      symbols: true
+      numbers: req.body.numbers,
+      uppercase: req.body.uppercase,
+      lowercase: req.body.lowercase,
+      symbols: req.body.symbols
     });
 };
-  console.log(passwordGenerator());
+  const thePassword = passwordGenerator();
+  console.log(thePassword);
+
+  // newPasswordToDatabase(userId, orgId, category, url, thePassword, title)
+
+
+
+ /* once the password generator is working, we can call a helper function to store the newly created
+ password along with the other variables to the database
+ */
+
   res.send('This worked!');
 });
 
@@ -75,3 +89,5 @@ module.exports = passwordRouter;
 /*
 // taks the JSON object returned fromfront end, and populate values
 */
+// document.querySelector('#passwordField').html(thePassword)
+

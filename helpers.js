@@ -126,7 +126,7 @@ const getEditedPassword = function (buttonId) {
     SELECT password_text
     FROM passwords
     WHERE id = ${buttonId}
-    ;  
+    ;
   `
   return pool.query(query);
 }
@@ -145,5 +145,13 @@ const getUserOrganizations = function (userId) {
     });
 };
 
+const newPasswordToDatabase= function (userId, orgId, category, url, password_text, title) {
+  const query =`
+  INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title)
+  VALUES (${userId}, ${orgId}, '${category}', '${url}', '${password_text}', '${title}');
+  `;
+  return pool.query(query);
+}
+
 // export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb, editPasswordFromDb, getEditedPassword };
+module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb, editPasswordFromDb, getEditedPassword, newPasswordToDatabase};
