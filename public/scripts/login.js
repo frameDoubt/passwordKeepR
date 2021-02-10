@@ -17,6 +17,7 @@ $(document).ready(function () {
     }, 3000);
   };
 
+  // https://stackoverflow.com/questions/41078641/how-to-properly-redirect-in-nodejs-expressjs
   userLogin = function() {
     $('#login_button').on('click', function() {
       console.log('clicked!');
@@ -28,9 +29,15 @@ $(document).ready(function () {
 
       $.ajax({ method: 'POST', url: '/login', data: { email: email, password: password }})
       .then(function (response) {
-        console.log("response from server: ", response);
-        fillAlert(response);
-        dismissAlert();
+
+        if (response.status == "Success") {
+          console.log("I ran first");
+          window.location = response.redirect;
+        } else {
+          console.log("I ran second");
+          fillAlert(response);
+          dismissAlert();
+        } 
       });
     });
   }

@@ -58,10 +58,10 @@ loginRoute.post("/", (req, res) => {
       throw new Error('password does not exist');
     } else {
       req.session.user_id = value;
-      res.redirect('/');
+      res.json({status: "Success", redirect: '/'});
     }
   }).catch(error => {
-    console.log(error)
+    console.log(error);
   });
 });
 
