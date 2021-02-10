@@ -21,10 +21,13 @@ loginRoute.get("/", (req, res) => {
 });
 
 /* POST route
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then */
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+   syncronous error handling before our promise chain below even starts */
 loginRoute.post("/", (req, res) => {
   const { email, password } = req.body;
-  // console.log("email from user input: ", email);
+  console.log("email from client: ", email);
+  console.log("password from client: ", password);
+
   const errors = {
     email: "Must provide email!",
     password: "Must provide password!",
@@ -32,17 +35,12 @@ loginRoute.post("/", (req, res) => {
     invalidPassword: "Invalid Password!"
   };
 
-  // syncronous error handling before our promise chain below even starts
   if (!email) {
-    const templateVars = {
-      error: errors.email
-    };
-    res.status(400).render('error', templateVars);
+    res.send(errors.email);
+    return;
   } else if (!password) {
-    const templateVars = {
-      error: errors.password
-    };
-    res.status(400).render('error', templateVars);
+    res.send(errors.password);
+    return;
   }
 
   /* promise chain that will first check if the users email exists against our db and then validate their password
@@ -51,25 +49,20 @@ loginRoute.post("/", (req, res) => {
   validUserEmail.then((value) => {
 
     if (!value) {
-      const templateVars = {
-        error: errors.emailNoExist
-      };
-      res.status(400).render('error', templateVars);
+      res.send(errors.emailNoExist);
+      throw new Error('email does not exist');
+    } else {
+      return passwordValidator(password, email);
     }
-
-    return passwordValidator(password, email);
   }).then((value) => {
 
     if (!value) {
-      const templateVars = {
-        error: errors.invalidPassword
-      };
-      res.status(400).render('error', templateVars);
+      res.send(errors.invalidPassword);
+      throw new Error('password does not exist');
+    } else {
+      req.session.user_id = value;
+      res.redirect('/');
     }
-
-    req.session.user_id = value;
-   //console.log("req.session id",  req.session.user_id);
-    res.redirect('/');
   }).catch(error => {
     console.log(error)
   });

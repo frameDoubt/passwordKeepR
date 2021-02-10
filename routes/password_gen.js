@@ -50,7 +50,6 @@ passwordRouter.get("/", (req, res) => {
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
   console.log('were expecting our form inputs to come in here as a object: ', req.body);
-
   console.log("req.body.url: ", req.body.url);
   console.log("req.body.length: ", req.body.length);
   console.log("req.body.numbers: ", req.body.numbers);

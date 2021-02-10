@@ -20,7 +20,7 @@ $(document).ready(function() {
     console.log("lowercaseVal: ", lowerCaseVal);
     console.log("symbolVal: ", symbolVal);
 
-    $.ajax({ method: 'POST', url: '/password_gen/', data: { url: url, length: passwordLength, uppercase: upperCaseVal, lowercase: lowerCaseVal, numbers: numberCheckVal, symbols: symbolVal  } })
+    $.ajax({ method: 'POST', url: '/password_gen/', data: { url: url, length: passwordLength, uppercase: upperCaseVal, lowercase: lowerCaseVal, numbers: numberCheckVal, symbols: symbolVal  }})
     .then(function (response) {
       console.log("response from the server is: ", response);
     });
