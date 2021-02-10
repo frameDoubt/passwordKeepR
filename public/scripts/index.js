@@ -15,6 +15,7 @@ $(document).ready(function () {
   /* attaches listeners to my passwords - to delete
    * perform ajax call to flask with jquery, to transmit extracted password_id to server
    * https://api.jquery.com/attribute-equals-selector/ */
+   
   for (let i = 0; i < del_button.length; i++) {
     del_button[i].onclick = function () {
       button_id = del_button[i].id;
