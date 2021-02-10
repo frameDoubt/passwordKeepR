@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const loginRoute = express.Router();
-const { emailExists, passwordValidator, isAuthenticated } = require("../helpers.js");
+const { emailExists, passwordValidator } = require("../helpers.js");
 
 /* require and use cookie session to store user ids for cookie sessions
  * https://www.npmjs.com/package/cookie-session */
