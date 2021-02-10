@@ -2,7 +2,7 @@ const express = require('express');
 const indexRoute = express.Router();
 const app = express();
 app.set("view engine", "ejs");
-const { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers } = require("../helpers.js");
+const { isAuthenticated, getPasswordsbyUsers, sortUserPasswords } = require("../helpers.js");
 
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -24,6 +24,12 @@ indexRoute.get("/", (req, res) => {
     } else {
       getPasswordsbyUsers(value)
       .then((passwordsByUser) => {
+        console.log("passwordsByUser array of objects: ", passwordsByUser);
+
+        const sortedpasswordsByUser = sortUserPasswords(passwordsByUser);
+
+        console.log("sortedpasswordsByUser array of objects: ", sortedpasswordsByUser);
+
         const templateVars = { value: id, users: passwordsByUser };
         // console.log(templateVars)
         res.render("index", templateVars);
