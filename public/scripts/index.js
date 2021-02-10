@@ -12,17 +12,16 @@ $(document).ready(function () {
   let submit_button2 = document.getElementsByClassName("submit_edits_company");
   let cachedPassword;
 
-  // attaches listeners to my passwords - to delete
+  /* attaches listeners to my passwords - to delete
+   * perform ajax call to flask with jquery, to transmit extracted password_id to server
+   * https://api.jquery.com/attribute-equals-selector/ */
   for (let i = 0; i < del_button.length; i++) {
     del_button[i].onclick = function () {
       button_id = del_button[i].id;
 
-      /* perform ajax call to flask with jquery, to transmit extracted password_id to server
-       * https://api.jquery.com/attribute-equals-selector/ */
       $.ajax({ method: 'POST', url: '/deletePassword', data: { clicked_button: button_id } })
         .then(function (response) {
           $(`div.personal_passwords[data-id=${response}]`)[0].style.display = "none";
-          $(`div.company_passwords[data-id=${response}]`)[0].style.display = "none";
         });
     }
   }
@@ -34,33 +33,30 @@ $(document).ready(function () {
 
       $.ajax({ method: 'POST', url: '/deletePassword', data: { clicked_button: button_id } })
         .then(function (response) {
-          $(`div.personal_passwords[data-id=${response}]`)[0].style.display = "none";
           $(`div.company_passwords[data-id=${response}]`)[0].style.display = "none";
         });
     }
   }
 
-  // figure out a way when the edit button is clicked, to change password h5 text into a editable form
-  // when this changes, we want to edit button to change into a 'cancel changes' and 'submit edited password' button
-
-
-  // attaches listeners to personal passwords - to edit - TODO
+  // attaches listeners to personal passwords - to edit
   for (let i = 0; i < edit_button.length; i++) {
     edit_button[i].onclick = function (event) {
-      button_id = edit_button[i].id;
+      const button_id = edit_button[i].id;
       cachedPassword = $(event.target).parent().parent().find('.password_to_edit').val();
-      edit_button_id = edit_button[i].id;
       edit_button[i].style.display = "none";
       cancel_button[i].style.display = "block";
       submit_button[i].style.display = "block";
       $(event.target).parent().parent().find('.password_to_edit').prop('disabled', false);
 
       submit_button[i].onclick = function () {
-        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id } })
+        const password_text = $(event.target).parent().parent().find('.password_to_edit').val();
+        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id, password_text: password_text } })
         .then(function (response) {
-          // $(`div.personal_passwords[data-id=${response}]`)[0].style.display = "none";
-          // $(`div.company_passwords[data-id=${response}]`)[0].style.display = "none";
-          console.log("response from server with id test: ", response);
+          edit_button[i].style.display = "block";
+          cancel_button[i].style.display = "none";
+          submit_button[i].style.display = "none";
+          $(event.target).parent().parent().find('.password_to_edit').val(response);
+          $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
         });
       }
 
@@ -74,29 +70,34 @@ $(document).ready(function () {
     }
    }
 
-  // attaches listeners to company passwords - to edit - TODO
+  // attaches listeners to company passwords - to edit 
   for (let i = 0; i < edit_button2.length; i++) {
     edit_button2[i].onclick = function (event) {
-      button_id = edit_button2[i].id;
+      const button_id = edit_button2[i].id;
+      cachedPassword = $(event.target).parent().parent().find('.password_to_edit_company').val();
       edit_button2[i].style.display = "none";
       cancel_button2[i].style.display = "block";
       submit_button2[i].style.display = "block";
-      $(event.target).parent().parent().find('.password_to_edit').prop('disabled', false);
+      $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', false);
 
-      submit_button[i].onclick = function () {
-        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id } })
+      submit_button2[i].onclick = function () {
+        const password_text = $(event.target).parent().parent().find('.password_to_edit_company').val();
+        $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id, password_text: password_text } })
         .then(function (response) {
-          // $(`div.personal_passwords[data-id=${response}]`)[0].style.display = "none";
-          // $(`div.company_passwords[data-id=${response}]`)[0].style.display = "none";
-          console.log("response from server with id test: ", response);
+          edit_button2[i].style.display = "block";
+          cancel_button2[i].style.display = "none";
+          submit_button2[i].style.display = "none";
+          $(event.target).parent().parent().find('.password_to_edit_company').val(response);
+          $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
         });
       }
 
       cancel_button2[i].onclick = function () {
+        $(event.target).parent().parent().find('.password_to_edit_company').val(cachedPassword);
         edit_button2[i].style.display = "block";
         cancel_button2[i].style.display = "none";
         submit_button2[i].style.display = "none";
-        $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
+        $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
       }
     }
   }
