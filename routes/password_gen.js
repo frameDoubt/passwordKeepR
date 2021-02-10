@@ -11,7 +11,7 @@ const passwordRouter = express.Router();
 const generator = require('generate-password');
 const app = express();
 const { db, Pool } = require('../db/dbConn');
-const { isAuthenticated, getUserOrganizations, newPasswordToDatabase } = require("../helpers.js");
+const { isAuthenticated, getUserOrganizations, newPasswordToDatabase, getOrgIdFromName } = require("../helpers.js");
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -49,44 +49,52 @@ passwordRouter.get("/", (req, res) => {
 
 // POSTS routes - TODO - take in db here - TEST
 passwordRouter.post("/", (req, res) => {
-  console.log('were expecting our form inputs to come in here as a object: ', req.body);
+  const id = req.session.user_id;
 
-  console.log("req.body.url: ", req.body.url);
-  console.log("req.body.length: ", req.body.length);
-  console.log("req.body.numbers: ", req.body.numbers);
-  console.log("req.body.uppercase: ", req.body.uppercase);
-  console.log("req.body.lowercase: ", req.body.lowercase);
-  console.log("req.body.symbols: ", req.body.symbols);
-
-  // console.log('this is the res', res.body);
   const passwordGenerator = function () {
+
+    if (req.body.uppercase === 'true') {
+      uppercaseBoolean = true;
+    } else if (req.body.uppercase === 'false') {
+      uppercaseBoolean = false;
+    }
+
+    if (req.body.lowercase === 'true') {
+      lowercaseBoolean = true;
+    } else if (req.body.lowercase === 'false') {
+      lowercaseBoolean = false;
+    }
+
+    if (req.body.symbols === 'true') {
+      symbolsBoolean = true;
+    } else if (req.body.symbols=== 'false') {
+      symbolsBoolean = false;
+    }
+
+    if (req.body.numbers === 'true') {
+      numbersBoolean = true;
+    } else if (req.body.numbers === 'false') {
+      numbersBoolean = false;
+    }
+
     return password = generator.generate({
       length: req.body.length,
-      numbers: req.body.numbers,
-      uppercase: req.body.uppercase,
-      lowercase: req.body.lowercase,
-      symbols: req.body.symbols
+      numbers: numbersBoolean,
+      uppercase: uppercaseBoolean,
+      lowercase: lowercaseBoolean,
+      symbols: symbolsBoolean
     });
 };
+
   const thePassword = passwordGenerator();
-  console.log(thePassword);
-
-  // newPasswordToDatabase(userId, orgId, category, url, thePassword, title)
-
-
-
- /* once the password generator is working, we can call a helper function to store the newly created
- password along with the other variables to the database
- */
-
-  res.send('This worked!');
+  getOrgIdFromName(req.body.organisationName)
+    .then((val) => {
+      const orgId = val;
+      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, thePassword, 'titleexample');
+      res.send('This worked!');
+    });
 });
 
 // export whole router
 module.exports = passwordRouter;
-
-/*
-// taks the JSON object returned fromfront end, and populate values
-*/
-// document.querySelector('#passwordField').html(thePassword)
 

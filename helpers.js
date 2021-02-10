@@ -144,16 +144,29 @@ const getUserOrganizations = function (userId) {
     });
 };
 
-const newPasswordToDatabase= function (userId, orgId, category, url, password_text, title) {
+//will be used to enter a new login/password to the database
+const newPasswordToDatabase = function (userId, orgId, category, url, password_text, title) {
+  pool.query(`SELECT id FROM organisations WHERE organisations.name = '${orgName}';`)
   const query =`
   INSERT INTO passwords (user_id, organisations_id, category, url, password_text, title)
   VALUES (${userId}, ${orgId}, '${category}', '${url}', '${password_text}', '${title}');
   `;
   return pool.query(query);
+};
+
+const getOrgIdFromName = function (name) {
+  const query = `
+  SELECT id
+  FROM organisations
+  WHERE organisations.name = '${name}';
+  `
+  return pool.query(query)
+    .then(res => {
+      console.log('RESULT OF ORG ID FROM NAME: ', res.rows[0])
+      return res.rows[0].id;
+    });
 }
 
-// export these helper functions to where they are needed
-module.exports = { emailExists, passwordValidator, isAuthenticated, getPasswordsbyUsers, getUserOrganizations, deletePasswordFromDb, editPasswordFromDb, getEditedPassword, newPasswordToDatabase};
 /* https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
  * sorts the array that later renders the dom elements by the url alpabetically */
 const sortUserPasswords = function (userPasswordArr) {
@@ -166,7 +179,7 @@ const sortUserPasswords = function (userPasswordArr) {
     }
     return 0;
   });
-}
+};
 
 // export these helper functions to where they are needed
 module.exports = {
@@ -178,5 +191,7 @@ module.exports = {
   deletePasswordFromDb,
   editPasswordFromDb,
   getEditedPassword,
-  sortUserPasswords
+  sortUserPasswords,
+  newPasswordToDatabase,
+  getOrgIdFromName
  };
