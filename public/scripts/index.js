@@ -102,7 +102,7 @@ $(document).ready(function () {
     }
   };
 
-  // attaches listeners to company passwords - to edit 
+  // attaches listeners to company passwords - to edit
   const editCompanyPassword = function () {
     for (let i = 0; i < edit_button2.length; i++) {
       edit_button2[i].onclick = function (event) {
@@ -138,7 +138,6 @@ $(document).ready(function () {
       }
     }
   }
-
   deletePersonalPassword();
   deleteCompanyPassword();
   editPersonalPassword();
