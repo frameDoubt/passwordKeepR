@@ -1,5 +1,6 @@
 .navbar-password {
   color: rgb(56, 56, 56);
+  font-size: 20px;
 }
 
 .navbar-password:hover {
@@ -17,4 +18,12 @@
 .navbar-light .navbar-nav .nav-link {
   color: rgba(0,0,0,.5);
   margin-left: 12px;
+}
+
+.logout-button {
+  margin-bottom: 4px;
+  margin-left: 3px;
+}
+a.nav-link {
+  margin-top: 4px;
 }

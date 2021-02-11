@@ -8,9 +8,9 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <link rel="stylesheet" href="/styles/index.css" type="text/css" />  
 <link rel="stylesheet" href="../styles/header.css" type="text/css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
-
-<!--boostrap JS and jquery scipts to get hamburger menu in our navbar working-->
 
 <body>
   <%- include('partials/_header') %>
@@ -32,23 +32,23 @@
               <% console.log("hello!: ", users[user].user_id) %>
               <div class="personal_passwords password_card" data-id="<%= users[user].id %>">
                 <div>
-                  <h5>
+                  <h4>
                     <%= users[user].url %>
-                  </h5>
+                  </h4>
                 </div>
                 <div>
-                  <input class="password_to_edit" type="text" value="<%= users[user].password_text %>"
-                    disabled="true"></input>
+                  <h5>
+                    <%= users[user].name %>
+                  </h5>
                 </div>
                 <div>
                   <h5>
                     <%= users[user].category %>
                   </h5>
                 </div>
-                <div>
-                  <h5>
-                    <%= users[user].name %>
-                  </h5>
+                <div class="input">
+                  <input class="password_to_edit form-control" type="text" value="<%= users[user].password_text %>"
+                    disabled="true"></input>
                 </div>
                 <div class="button-container">
                   <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
@@ -67,29 +67,29 @@
               <% } %>
           <% } %>
         </div>
-        <h3>All Company Passwords</h3>
+        <h3>All Company Passwords - Created by other users</h3>
         <div class="flex-container">
           <% for(let user in users) { %>
             <% if (value !== users[user].user_id) { %>
               <div class="company_passwords password_card" data-id="<%= users[user].id %>">
                 <div>
-                  <h5>
+                  <h4>
                     <%= users[user].url %>
-                  </h5>
-                </div>
-                <div>
-                  <input class="password_to_edit_company" type="text" value="<%= users[user].password_text %>"
-                    disabled="true"></input>
-                </div>
-                <div>
-                  <h5>
-                    <%= users[user].category %>
-                  </h5>
+                  </h4>
                 </div>
                 <div>
                   <h5>
                     <%= users[user].name %>
                   </h5>
+                </div>
+                <div>
+                  <h5>
+                    <%= users[user].category %> 
+                  </h5>
+                </div>
+                <div class="input">
+                  <input class="password_to_edit_company form-control"  type="text" value="<%= users[user].password_text %>"
+                    disabled="true"></input>
                 </div>
                 <div class="button-container">
                   <button class="btn btn-outline-danger remove_from_password_buttons_company"

@@ -6,7 +6,7 @@ main {
 
 .login {
   width: 50%;
-  margin-top: 4em;
+  margin-top: 8em;
   max-width: 350px;
 }
 
@@ -27,4 +27,16 @@ main {
 }
 
 
+h5 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+}
 
