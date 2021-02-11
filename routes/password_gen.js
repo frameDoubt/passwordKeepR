@@ -22,9 +22,6 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000
 }));
 
-// PG database client/connection setup
-// db.connect();
-
 /* get routes for password generator page
  * query to db for the current logged in user, and check what orginizations they are part of
  * send that information back to the client for the orginzation drop down menu to pick from */

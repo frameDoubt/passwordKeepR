@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const deletePasswordRoute = express.Router();
-const { emailExists, passwordValidator, isAuthenticated, deletePasswordFromDb } = require("../helpers.js");
+const { deletePasswordFromDb } = require("../helpers.js");
 
 
 /* require and use cookie session to store user ids for cookie sessions
