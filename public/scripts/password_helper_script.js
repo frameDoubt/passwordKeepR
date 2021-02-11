@@ -8,6 +8,18 @@ $(document).ready(function() {
   $('#passwordLength').on('input', function() {
     $('#slider_value').html(this.value);
   });
+  $('#genpass').on('click', function() {
+    $('#pwordLenRange').show()
+    $('#pwordOptions').show()
+    $('#pwordLenRange2').hide()
+  })
+
+  $('#ownpass').on('click', function() {
+    $('#pwordLenRange').hide()
+    $('#pwordOptions').hide()
+    $('#pwordLenRange2').show()
+  })
+
   $('#pwordSubmission').on('click', function() {
     const url = $('#urlInput').val();
     const passwordLength = $('#passwordLength').val();
