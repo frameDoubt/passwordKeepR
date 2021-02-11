@@ -51,6 +51,9 @@ passwordRouter.get("/", (req, res) => {
 passwordRouter.post("/", (req, res) => {
   const id = req.session.user_id;
 
+  if (req.body.length) {
+
+  console.log('im inside the password generator')
   const passwordGenerator = function () {
 
     if (req.body.uppercase === 'true') {
@@ -84,7 +87,7 @@ passwordRouter.post("/", (req, res) => {
       lowercase: lowercaseBoolean,
       symbols: symbolsBoolean
     });
-};
+  };
 
   const thePassword = passwordGenerator();
   getOrgIdFromName(req.body.organisationName)
@@ -93,6 +96,14 @@ passwordRouter.post("/", (req, res) => {
       newPasswordToDatabase(id, orgId, req.body.category, req.body.url, thePassword);
       res.send('This worked!');
     });
+  } else {
+    getOrgIdFromName(req.body.organisationName)
+    .then((val) => {
+      const orgId = val;
+      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, req.body.password);
+      res.send('This also worked! You can submit your own password');
+    });
+  }
 });
 
 // export whole router
