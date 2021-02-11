@@ -6,6 +6,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" href="/styles/index.css" type="text/css" />  
 </head>
 
 <!--boostrap JS and jquery scipts to get hamburger menu in our navbar working-->
@@ -22,94 +23,110 @@
       crossorigin="anonymous"></script>
 
     <div id="alert_placeholder"></div>
-    <main style="margin: 1em;">
+    <main>
       <h3>My Passwords - Also shared by your companies</h3>
-        <% for(let user in users) { %>
-          <% if (value===users[user].user_id) { %>
-            <% console.log("hello!: ", users[user].user_id) %>
-            <div class="personal_passwords" data-id="<%= users[user].id %>">
-              <div>
-                <h5>
-                  <%= users[user].url %>
-                </h5>
+        <div class="flex-container">
+          <% for(let user in users) { %>
+            <% if (value===users[user].user_id) { %>
+              <% console.log("hello!: ", users[user].user_id) %>
+              <div class="personal_passwords password_card" data-id="<%= users[user].id %>">
+                <div>
+                  <h5>
+                    <%= users[user].url %>
+                  </h5>
+                </div>
+                <div>
+                  <input class="password_to_edit" type="text" value="<%= users[user].password_text %>"
+                    disabled="true"></input>
+                </div>
+                <div>
+                  <h5>
+                    <%= users[user].category %>
+                  </h5>
+                </div>
+                <div>
+                  <h5>
+                    <%= users[user].name %>
+                  </h5>
+                </div>
+                <div>
+                  <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
+                    type="submit">Delete</button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-primary edit_password" id="<%= users[user].id %>" type="submit"
+                    style="display:block">Edit</button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-secondary cancel_edits" id="<%= users[user].id %>" type="submit"
+                    style="display:none">Cancel</button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-success submit_edits" id="<%= users[user].id %>" type="submit"
+                    style="display:none">Submit</button>
+                </div>
               </div>
-              <div>
-                <input class="password_to_edit" type="text" value="<%= users[user].password_text %>"
-                  disabled="true"></input>
-              </div>
-              <div>
-                <h5>
-                  <%= users[user].category %>
-                </h5>
-              </div>
-              <div>
-                <h5>
-                  <%= users[user].name %>
-                </h5>
-              </div>
-              <div>
-                <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
-                  type="submit">Delete Password</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-primary edit_password" id="<%= users[user].id %>" type="submit"
-                  style="display:block">Edit Password</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-secondary cancel_edits" id="<%= users[user].id %>" type="submit"
-                  style="display:none">Cancel changes</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-success submit_edits" id="<%= users[user].id %>" type="submit"
-                  style="display:none">Submit changes</button>
-              </div>
-            </div>
-            <% } %>
-        <% } %>
-        <h3>All Company Passwords</h3>
-        <% for(let user in users) { %>
-          <% if (value !== users[user].user_id) { %>
-            <div class="company_passwords" data-id="<%= users[user].id %>">
-              <div>
-                <h5>
-                  <%= users[user].url %>
-                </h5>
-              </div>
-              <div>
-                <input class="password_to_edit_company" type="text" value="<%= users[user].password_text %>"
-                  disabled="true"></input>
-              </div>
-              <div>
-                <h5>
-                  <%= users[user].category %>
-                </h5>
-              </div>
-              <div>
-                <h5>
-                  <%= users[user].name %>
-                </h5>
-              </div>
-              <div>
-                <button class="btn btn-outline-danger remove_from_password_buttons_company"
-                  id="<%= users[user].id %>" type="submit">Delete Password</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-primary edit_password_company" id="<%= users[user].id %>"
-                  type="submit" style="display:block">Edit
-                  Password</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-secondary cancel_edits_company" id="<%= users[user].id %>"
-                  type="submit" style="display:none">Cancel Changes</button>
-              </div>
-              <div>
-                <button class="btn btn-outline-success submit_edits_company" id="<%= users[user].id %>"
-                  type="submit" style="display:none">Submit Changes</button>
-              </div>
-            </div>
+              <% } %>
           <% } %>
-        <% } %>
+        </div>
+        <h3>All Company Passwords</h3>
+        <div class="flex-container">
+          <% for(let user in users) { %>
+            <% if (value !== users[user].user_id) { %>
+              <div class="company_passwords password_card" data-id="<%= users[user].id %>">
+                <div>
+                  <h5>
+                    <%= users[user].url %>
+                  </h5>
+                </div>
+                <div>
+                  <input class="password_to_edit_company" type="text" value="<%= users[user].password_text %>"
+                    disabled="true"></input>
+                </div>
+                <div>
+                  <h5>
+                    <%= users[user].category %>
+                  </h5>
+                </div>
+                <div>
+                  <h5>
+                    <%= users[user].name %>
+                  </h5>
+                </div>
+                <div>
+                  <button class="btn btn-outline-danger remove_from_password_buttons_company"
+                    id="<%= users[user].id %>" type="submit">Delete</button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-primary edit_password_company" id="<%= users[user].id %>"
+                    type="submit" style="display:block">Edit</button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-secondary cancel_edits_company" id="<%= users[user].id %>"
+                    type="submit" style="display:none">Cancel </button>
+                </div>
+                <div>
+                  <button class="btn btn-outline-success submit_edits_company" id="<%= users[user].id %>"
+                    type="submit" style="display:none">Submit</button>
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+        </div>
       <script src="../scripts/index.js"></script>
   </main>
 </body>
 </html>
+
+<!-- 
+  main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  div > .personal_passwords {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }
+ -->
