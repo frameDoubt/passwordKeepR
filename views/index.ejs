@@ -91,19 +91,16 @@
                     <%= users[user].name %>
                   </h5>
                 </div>
-                <div>
+                <div class="button-container">
                   <button class="btn btn-outline-danger remove_from_password_buttons_company"
                     id="<%= users[user].id %>" type="submit">Delete</button>
-                </div>
-                <div>
+              
                   <button class="btn btn-outline-primary edit_password_company" id="<%= users[user].id %>"
                     type="submit" style="display:block">Edit</button>
-                </div>
-                <div>
+                
                   <button class="btn btn-outline-secondary cancel_edits_company" id="<%= users[user].id %>"
                     type="submit" style="display:none">Cancel </button>
-                </div>
-                <div>
+               
                   <button class="btn btn-outline-success submit_edits_company" id="<%= users[user].id %>"
                     type="submit" style="display:none">Submit</button>
                 </div>
