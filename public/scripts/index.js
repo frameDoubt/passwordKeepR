@@ -12,7 +12,6 @@ $(document).ready(function () {
   let submit_button2 = document.getElementsByClassName("submit_edits_company");
   let cachedPassword;
 
-
   /* https://stackoverflow.com/questions/10082330/dynamically-create-bootstrap-alerts-box-through-javascript
 * call the #alert_placeholder temp div and populate it with the boostrap banner */
   const fillAlert = function (notification) {
@@ -138,8 +137,10 @@ $(document).ready(function () {
       }
     }
   }
+
   deletePersonalPassword();
   deleteCompanyPassword();
   editPersonalPassword();
   editCompanyPassword();
+  highlightDivs();
 });

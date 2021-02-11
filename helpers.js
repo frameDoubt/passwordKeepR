@@ -1,7 +1,3 @@
-// PG database client/connection setup
-// const { db, Pool } = require('../db/dbConn');
-// db.connect();
-
 // install pg and connect to the lightbnb database at the top of the database.js file.
 const { Pool } = require('pg');
 const { user } = require('pg/lib/defaults');
