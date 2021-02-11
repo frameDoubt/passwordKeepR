@@ -97,4 +97,3 @@ passwordRouter.post("/", (req, res) => {
 
 // export whole router
 module.exports = passwordRouter;
-
