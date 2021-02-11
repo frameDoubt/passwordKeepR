@@ -25,6 +25,7 @@ indexRoute.get("/", (req, res) => {
       getPasswordsbyUsers(value)
       .then((passwordsByUser) => {
         const sortedpasswordsByUser = sortUserPasswords(passwordsByUser);
+        console.log('ALL THE PSWORDS HERE: ', sortedpasswordsByUser);
         const templateVars = { value: id, users: sortedpasswordsByUser };
         res.render("index", templateVars);
       }).catch(error => {
