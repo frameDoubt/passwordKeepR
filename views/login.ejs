@@ -3,8 +3,10 @@
   <head>
     <!-- bootstrap Latest compiled and minified CSS -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+   integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+   <link rel="stylesheet" href="/styles/login.css" type="text/css" />
+   <link rel="stylesheet" href="../styles/header.css" type="text/css" />
   </head>
 
   <body>
@@ -19,10 +21,8 @@
       crossorigin="anonymous"></script>
     <script src="../scripts/login.js"></script>
     <main style="margin: 1em;">
-      <h3>Login</h3>
-      <!-- took this user registration form from my previous CS50 final project to save time: -->
-      <!-- https://github.com/jallen2034/CS50-Final-Project/blob/master/Final%20Project/templates/register.html -->
       <div class="login">
+        <h3 class="yeet">Login</h3>
         <div class="form-group">
           <input autocomplete="off" autofocus class="form-control" id="email" name="email" placeholder="email"
             type="email">
