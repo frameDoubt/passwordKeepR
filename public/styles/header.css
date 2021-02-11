@@ -1,0 +1,20 @@
+.navbar-password {
+  color: rgb(56, 56, 56);
+}
+
+.navbar-password:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar {
+  min-height: 70px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,.5);
+  margin-left: 12px;
+}

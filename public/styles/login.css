@@ -1,0 +1,30 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login {
+  width: 50%;
+  margin-top: 4em;
+  max-width: 350px;
+}
+
+/* https://stackoverflow.com/questions/39811673/change-the-height-of-ui-bootstrap-alert */
+.alert {
+  margin-bottom: 1px;
+  min-height: 30px;
+  line-height:30px;
+  padding:0px 15px;
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  left: 0;
+}
+
+.alert p {
+  margin: 4px 0;
+}
+
+
+

@@ -1,0 +1,58 @@
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding-left: 100px;
+}
+
+body {
+  margin-top: 8em;
+}
+
+.password_card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+  max-width: 30%;
+  padding: 5px;
+}
+
+.flex-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+h5 {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+button {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* https://stackoverflow.com/questions/39811673/change-the-height-of-ui-bootstrap-alert */
+.alert {
+  margin-bottom: 1px;
+  min-height: 30px;
+  line-height:30px;
+  padding:0px 15px;
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  left: 0;
+}
+
+.alert p {
+  margin: 4px 0;
+}
