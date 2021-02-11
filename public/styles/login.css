@@ -40,3 +40,10 @@ h3 {
   font-family: 'Montserrat', sans-serif;
 }
 
+h3.yeet {
+  margin-bottom: 18px;
+}
+
+.button {
+  margin-top: 5px;
+}

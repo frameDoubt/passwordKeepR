@@ -21,9 +21,23 @@
 }
 
 .logout-button {
-  margin-bottom: 4px;
+  margin-top: -8px;
   margin-left: 3px;
 }
-a.nav-link {
+
+.navbar .navbar-nav a.nav-link {
   margin-top: 4px;
+  color: white;
+}
+
+a.navbar-password {
+  color: white;
+}
+
+.navbar-header {
+  margin-bottom: 5px;
+}
+
+h5.navbar-header {
+  color: white;
 }
