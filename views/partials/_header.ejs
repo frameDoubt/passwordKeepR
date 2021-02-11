@@ -3,7 +3,7 @@
 <!-- https://www.youtube.com/watch?v=23bpce-5s8I -->
 <header>
   <!-- navbar CSS -->
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <a href="/" class="navbar-password">PassworKeepR</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
       <span class="navbar-toggler-icon"></span>
@@ -15,9 +15,9 @@
           <a href="/password_gen" class="nav-link"> Create Password </a>
         </li>
       </ul>
-      <h5 style= "padding-left: 3em; padding-right: 1em">Logged in!</h5>
-      <form action="/logout" method="POST">
-        <button class = "btn btn-outline-dark" type="submit">Logout</button>
+      <h5 class="navbar-header" style= "padding-left: 3em; padding-right: 1em">Logged in!</h5>
+      <form class="logout-button" action="/logout" method="POST">
+        <button class = "btn btn-outline-light" type="submit">Logout</button>
       </form>
     </div>
     <% } %>      
