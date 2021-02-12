@@ -12,6 +12,7 @@ const generator = require('generate-password');
 const app = express();
 const { db, Pool } = require('../db/dbConn');
 const { isAuthenticated, getUserOrganizations, newPasswordToDatabase, getOrgIdFromName } = require("../helpers.js");
+const bcrypt = require('bcrypt');
 
 // require and use cookie session to store user ids for cookie sessions
 const cookieSession = require('cookie-session');
@@ -87,17 +88,20 @@ passwordRouter.post("/", (req, res) => {
   };
 
   const thePassword = passwordGenerator();
+  const hashedPassword = bcrypt.hashSync(thePassword, 10);
   getOrgIdFromName(req.body.organisationName)
     .then((val) => {
       const orgId = val;
-      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, thePassword);
+      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, hashedPassword);
       res.send('This worked!');
     });
   } else {
     getOrgIdFromName(req.body.organisationName)
     .then((val) => {
       const orgId = val;
-      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, req.body.password);
+      const thePassword = req.body.password;
+      const hashedPassword = bcrypt.hashSync(thePassword, 10);
+      newPasswordToDatabase(id, orgId, req.body.category, req.body.url, hashedPassword);
       res.send('This also worked! You can submit your own password');
     });
   }
