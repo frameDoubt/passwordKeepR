@@ -42,6 +42,23 @@ If a user needs to log in to a specific website (e.g. Facebook) they can go into
 
 ## Screenshots
 
+Login page:
+
+!["Login page"](https://github.com/frameDoubt/passwordKeepR/blob/master/docs/1.png)
+
+Index page:
+
+!["Error handling on Desktop"](https://github.com/frameDoubt/passwordKeepR/blob/master/docs/2.png)
+
+Editing a password:
+
+!["Adding a tweet"](https://github.com/frameDoubt/passwordKeepR/blob/master/docs/3.png)
+
+Creating a password
+
+!["On smaller displays"](https://github.com/frameDoubt/passwordKeepR/blob/master/docs/4.png)
+
+!["Error handling on smaller displays"](https://github.com/frameDoubt/passwordKeepR/blob/master/docs/5.png)
 
 ## Videos
 
