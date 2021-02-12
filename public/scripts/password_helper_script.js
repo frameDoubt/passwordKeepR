@@ -1,10 +1,8 @@
 
 
-
+/* function update counter for password length range input
+ * https://stackoverflow.com/questions/11599666/get-the-value-of-checked-checkbox */
 $(document).ready(function() {
-
-  // function update counter for password length range input
-  // https://stackoverflow.com/questions/11599666/get-the-value-of-checked-checkbox
   $('#passwordLength').on('input', function() {
     $('#slider_value').html(this.value);
   });
