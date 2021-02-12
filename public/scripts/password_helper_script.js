@@ -27,7 +27,6 @@ $(document).ready(function () {
   };
 
   const createPassword = function () {
-   
     $('#passwordLength').on('input', function () {
       $('#slider_value').html(this.value);
     });
@@ -57,6 +56,7 @@ $(document).ready(function () {
       const symbolVal = document.querySelector('#symbolsCheck').checked;
       const organisationName = document.querySelector('#orgName').value;
       const category = document.querySelector('#catName').value;
+      console.log("category ", category);
 
       if (!url) {
         fillAlertError(errors.urlempty);
@@ -99,6 +99,7 @@ $(document).ready(function () {
       const password2 = document.querySelector('#passwordField2').value;
       const organisationName2 = document.querySelector('#orgName2').value;
       const category2 = document.querySelector('#catName2').value;
+      console.log("category2 ", category2);
 
       if (!url2) {
         fillAlertError(errors.passwordEmpty);
