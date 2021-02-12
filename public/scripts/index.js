@@ -72,6 +72,8 @@ $(document).ready(function () {
         const button_id = edit_button[i].id;
         cachedPassword = $(event.target).parent().parent().find('.password_to_edit').val();
         edit_button[i].style.display = "none";
+        copy_button[i].style.display = "none";
+        del_button[i].style.display = "none";
         cancel_button[i].style.display = "block";
         submit_button[i].style.display = "block";
         $(event.target).parent().parent().find('.password_to_edit').prop('disabled', false);
@@ -81,6 +83,8 @@ $(document).ready(function () {
           $.ajax({ method: 'POST', url: '/editPassword', data: { clicked_button: button_id, password_text: password_text } })
             .then(function (response) {
               edit_button[i].style.display = "block";
+              copy_button[i].style.display = "block";
+              del_button[i].style.display = "block";
               cancel_button[i].style.display = "none";
               submit_button[i].style.display = "none";
               $(event.target).parent().parent().find('.password_to_edit').val(response);
@@ -94,6 +98,8 @@ $(document).ready(function () {
         cancel_button[i].onclick = function () {
           $(event.target).parent().parent().find('.password_to_edit').val(cachedPassword);
           edit_button[i].style.display = "block";
+          copy_button[i].style.display = "block";
+          del_button[i].style.display = "block";
           cancel_button[i].style.display = "none";
           submit_button[i].style.display = "none";
           $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
@@ -109,6 +115,8 @@ $(document).ready(function () {
         const button_id = edit_button2[i].id;
         cachedPassword = $(event.target).parent().parent().find('.password_to_edit_company').val();
         edit_button2[i].style.display = "none";
+        copy_button2[i].style.display = "none";
+        del_button2[i].style.display = "none";
         cancel_button2[i].style.display = "block";
         submit_button2[i].style.display = "block";
         $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', false);
@@ -120,6 +128,8 @@ $(document).ready(function () {
               edit_button2[i].style.display = "block";
               cancel_button2[i].style.display = "none";
               submit_button2[i].style.display = "none";
+              del_button2[i].style.display = "block";
+              copy_button2[i].style.display = "block";
               $(event.target).parent().parent().find('.password_to_edit_company').val(response);
               $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
               const notification = "Company password edited on database!";
@@ -133,6 +143,8 @@ $(document).ready(function () {
           edit_button2[i].style.display = "block";
           cancel_button2[i].style.display = "none";
           submit_button2[i].style.display = "none";
+          copy_button2[i].style.display = "block";
+          del_button2[i].style.display = "block";
           $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
         }
       }
