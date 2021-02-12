@@ -102,7 +102,7 @@ $(document).ready(function () {
       console.log("category2 ", category2);
 
       if (!url2) {
-        fillAlertError(errors.passwordEmpty);
+        fillAlertError(errors.urlempty);
         dismissAlert();
         return;
       }

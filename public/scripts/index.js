@@ -14,13 +14,13 @@ $(document).ready(function () {
   let cachedPassword;
 
   /* https://stackoverflow.com/questions/10082330/dynamically-create-bootstrap-alerts-box-through-javascript
-* call the #alert_placeholder temp div and populate it with the boostrap banner */
+   * call the #alert_placeholder temp div and populate it with the boostrap banner */
   const fillAlert = function (notification) {
     $('#alert_placeholder').html('<div class="alert alert-primary" role="alert" style="position:abolute;z-index:999;">' + notification + '</div>');
   };
 
   /* when called, will dismiss any alerts after 3.7 seconds
-  * https://api.jquery.com/fadeTo, https://api.jquery.com/slideup, https://api.jquery.com/remove */
+   * https://api.jquery.com/fadeTo, https://api.jquery.com/slideup, https://api.jquery.com/remove */
   const dismissAlert = function () {
     window.setTimeout(function () {
       $(".alert").fadeTo(600, 0).slideUp(600, function () {
