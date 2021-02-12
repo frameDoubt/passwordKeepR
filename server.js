@@ -19,7 +19,6 @@ const morgan = require('morgan');
 
    maxAge: 24 * 60 * 60 * 1000
  }));
-
 /* old way of connecting to PG db from server.js file before modularizing this process
  * PG database client/connection setup
  * const { Pool } = require('pg');
