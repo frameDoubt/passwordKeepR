@@ -26,13 +26,7 @@ $(document).ready(function () {
     }, 3000);
   };
 
-  const createPassword = function () {
-
-    const errors = {
-      urlempty: "Sorry. You can't leave the URL field empty. Try again!",
-      checkBoxesEmpty: "Sorry. You can't generate a password with all boxes unchcked. Try again!"
-    }
-
+  const showForms = function () {
     $('#passwordLength').on('input', function () {
       $('#slider_value').html(this.value);
     });
@@ -48,8 +42,14 @@ $(document).ready(function () {
       $('#pwordOptions').hide()
       $('#pwordLenRange2').show()
     })
+  }
 
+  const createPassword = function () {
     $('#pwordSubmission').on('click', function () {
+      const errors = {
+        urlempty: "Sorry. You can't leave the URL field empty. Try again!",
+        checkBoxesEmpty: "Sorry. You can't generate a password with all boxes unchcked. Try again!"
+      }
       const url = $('#urlInput').val();
       const passwordLength = $('#passwordLength').val();
       const upperCaseVal = document.querySelector('#upperCaseCheck').checked;
@@ -90,13 +90,26 @@ $(document).ready(function () {
         dismissAlert();
       });
     });
+  }
 
+  const typePassword = function () {
     $('#pwordSubmission2').on('click', function () {
+      const errors = {
+        passwordEmpty: "Sorry. You can't create a password that is empty. Try again!"
+      };
       const url = $('#urlInput2').val();
       const password = document.querySelector('#passwordField2').value;
       const organisationName = document.querySelector('#orgName2').value;
       const category = document.querySelector('#catName2').value;
-      console.log('these are sub 2 inputs: ', url, password, organisationName, category)
+
+      console.log("password", password);
+      console.log("typeof password", typeof password);
+
+      if (password.length === 0) {
+        fillAlertError(errors.passwordEmpty);
+        dismissAlert();
+        return;
+      }
 
       $.ajax({
           method: 'POST', url: '/password_gen/', data: {
@@ -116,5 +129,7 @@ $(document).ready(function () {
   }
 
   createPassword();
+  typePassword();
+  showForms();
 });
 
