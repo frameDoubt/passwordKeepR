@@ -40,7 +40,7 @@ passwordRouter.get("/", (req, res) => {
     const templateVars = { value: id, organisations };
     res.render("password_gen", templateVars);
   }).catch(error => {
-    console.log(error)
+    console.log(error);
   });
 });
 

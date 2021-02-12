@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log("Hello world");
 
   // variables to store the elements we want to manipulate
   let del_button = document.getElementsByClassName("remove_from_password_buttons");
@@ -10,6 +9,7 @@ $(document).ready(function () {
   let cancel_button2 = document.getElementsByClassName("cancel_edits_company");
   let submit_button = document.getElementsByClassName("submit_edits");
   let submit_button2 = document.getElementsByClassName("submit_edits_company");
+  let copy_button = document.getElementsByClassName("copy_password");
   let cachedPassword;
 
   /* https://stackoverflow.com/questions/10082330/dynamically-create-bootstrap-alerts-box-through-javascript
@@ -138,9 +138,27 @@ $(document).ready(function () {
     }
   }
 
+  const copyToClipboard = function() {
+    for (let i = 0; i < copy_button.length; i++) {
+      copy_button[i].onclick = function () {
+        console.log("inside copy to clipboard function LOOP", copy_button[i]);
+        let copyText = document.querySelector("#passwordInput");
+        console.log("copytext is: ", copyText)
+        copyText.select();
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Copied the text: " + copyText.value);
+      }
+    }
+  }
+
+  copyToClipboard();
   deletePersonalPassword();
   deleteCompanyPassword();
   editPersonalPassword();
   editCompanyPassword();
   highlightDivs();
 });
+
+

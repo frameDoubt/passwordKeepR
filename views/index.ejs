@@ -6,7 +6,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="stylesheet" href="/styles/index.css" type="text/css" />  
+<link rel="stylesheet" href="/styles/index.css" type="text/css" />
 <link rel="stylesheet" href="../styles/header.css" type="text/css" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
@@ -48,18 +48,19 @@
                 </div>
                 <div class="input">
                   <input class="password_to_edit form-control" type="text" value="<%= users[user].password_text %>"
-                    disabled="true"></input>
+                    disabled="true" id="passwordInput">
+                  <button id="copyToClipboard" class="copy_password">Copy To Clipboard</button>
                 </div>
                 <div class="button-container">
                   <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
                     type="submit">Delete</button>
-    
+
                   <button class="btn btn-outline-primary edit_password" id="<%= users[user].id %>" type="submit"
                     style="display:block">Edit</button>
-            
+
                   <button class="btn btn-outline-secondary cancel_edits" id="<%= users[user].id %>" type="submit"
                     style="display:none">Cancel</button>
-              
+
                   <button class="btn btn-outline-success submit_edits" id="<%= users[user].id %>" type="submit"
                     style="display:none">Submit</button>
                 </div>
@@ -84,7 +85,7 @@
                 </div>
                 <div>
                   <h5>
-                    <%= users[user].category %> 
+                    <%= users[user].category %>
                   </h5>
                 </div>
                 <div class="input">
@@ -94,13 +95,13 @@
                 <div class="button-container">
                   <button class="btn btn-outline-danger remove_from_password_buttons_company"
                     id="<%= users[user].id %>" type="submit">Delete</button>
-              
+
                   <button class="btn btn-outline-primary edit_password_company" id="<%= users[user].id %>"
                     type="submit" style="display:block">Edit</button>
-                
+
                   <button class="btn btn-outline-secondary cancel_edits_company" id="<%= users[user].id %>"
                     type="submit" style="display:none">Cancel </button>
-               
+
                   <button class="btn btn-outline-success submit_edits_company" id="<%= users[user].id %>"
                     type="submit" style="display:none">Submit</button>
                 </div>
