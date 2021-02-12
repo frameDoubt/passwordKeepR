@@ -49,8 +49,6 @@ passwordRouter.post("/", (req, res) => {
   const id = req.session.user_id;
 
   if (req.body.length) {
-
-  console.log('im inside the password generator')
   const passwordGenerator = function () {
 
     if (req.body.uppercase === 'true') {
@@ -87,6 +85,7 @@ passwordRouter.post("/", (req, res) => {
   };
 
   const thePassword = passwordGenerator();
+  console.log("thepassword? ", thePassword);
   getOrgIdFromName(req.body.organisationName)
     .then((val) => {
       const orgId = val;
