@@ -159,7 +159,9 @@ $(document).ready(function () {
         $(event.target).parent().parent().find('.password_to_edit').select()
         document.execCommand("copy")
         $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
-        alert("Copied the text: " + copyText.val());
+        const notificationString = `Following password copied to your clipboard: ${copyText.val()}`
+        fillAlert(notificationString);
+        dismissAlert();
       }
     }
   }
@@ -172,7 +174,9 @@ $(document).ready(function () {
         $(event.target).parent().parent().find('.password_to_edit_company').select()
         document.execCommand("copy")
         $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
-        alert("Copied the text: " + copyText.val());
+        const notificationString = `Following password copied to your clipboard: ${copyText.val()}`
+        fillAlert(notificationString);
+        dismissAlert();
       }
     }
   }

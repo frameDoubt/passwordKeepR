@@ -16,7 +16,7 @@ main {
   min-height: 35px;
   line-height:35px;
   padding:0px 35px;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 70px;
   left: 0;
