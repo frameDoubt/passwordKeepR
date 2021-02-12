@@ -50,8 +50,6 @@ passwordRouter.post("/", (req, res) => {
   const id = req.session.user_id;
 
   if (req.body.length) {
-
-  console.log('im inside the password generator')
   const passwordGenerator = function () {
 
     if (req.body.uppercase === 'true') {
