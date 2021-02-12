@@ -1,7 +1,4 @@
-LHL Node Skeleton
-=========
-
-## Project Setup
+## Project Description
 
 PasswordKeepR is a storage system for passwords for organzations. An organization, like Lighthouse labs, has many different accounts which need to be shared between users. This app will let an authorized user acess all the passwords of the organization. The app will also let a user generate a new password for a specific account (just like LastPass). Users will be able to generate a password based on the options the form will provide. Some of the options are: password length, contains lowercase, contairs uppercase, contains numbers, and contains symbols.
 
