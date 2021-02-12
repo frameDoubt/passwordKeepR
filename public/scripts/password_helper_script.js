@@ -29,8 +29,8 @@ $(document).ready(function () {
   const createPassword = function () {
 
     const errors = {
-      urlempty: "Sorry, you can't leave the URL firld empty. Try again!",
-      checkBoxesEmpty: "Sorry, you can't generate a password with all boxes unchcked. Try again!"
+      urlempty: "Sorry. You can't leave the URL field empty. Try again!",
+      checkBoxesEmpty: "Sorry. You can't generate a password with all boxes unchcked. Try again!"
     }
 
     $('#passwordLength').on('input', function () {
@@ -66,7 +66,7 @@ $(document).ready(function () {
       }
   
       if (!upperCaseVal && !lowerCaseVal && !numberCheckVal && !symbolVal) {
-        fillAlert(errors.checkBoxesEmpty);
+        fillAlertError(errors.checkBoxesEmpty);
         dismissAlert();
         return;
       }
