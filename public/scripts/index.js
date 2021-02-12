@@ -10,6 +10,7 @@ $(document).ready(function () {
   let submit_button = document.getElementsByClassName("submit_edits");
   let submit_button2 = document.getElementsByClassName("submit_edits_company");
   let copy_button = document.getElementsByClassName("copy_password");
+  let copy_button2 = document.getElementsByClassName("copy_password_company");
   let cachedPassword;
 
   /* https://stackoverflow.com/questions/10082330/dynamically-create-bootstrap-alerts-box-through-javascript
@@ -140,19 +141,31 @@ $(document).ready(function () {
 
   const copyToClipboard = function() {
     for (let i = 0; i < copy_button.length; i++) {
-      copy_button[i].onclick = function () {
-        console.log("inside copy to clipboard function LOOP", copy_button[i]);
-        let copyText = document.querySelector("#passwordInput");
-        console.log("copytext is: ", copyText)
-        copyText.select();
-        document.execCommand("copy");
-
-        /* Alert the copied text */
-        alert("Copied the text: " + copyText.value);
+      copy_button[i].onclick = function (event) {
+        $(event.target).parent().parent().find('.password_to_edit').prop('disabled', false);
+        let copyText = $(event.target).parent().parent().find('.password_to_edit')
+        $(event.target).parent().parent().find('.password_to_edit').select()
+        document.execCommand("copy")
+        $(event.target).parent().parent().find('.password_to_edit').prop('disabled', true);
+        alert("Copied the text: " + copyText.val());
       }
     }
   }
 
+  const copyToClipboardCompany = function() {
+    for (let i = 0; i < copy_button2.length; i++) {
+      copy_button2[i].onclick = function (event) {
+        $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', false);
+        let copyText = $(event.target).parent().parent().find('.password_to_edit_company')
+        $(event.target).parent().parent().find('.password_to_edit_company').select()
+        document.execCommand("copy")
+        $(event.target).parent().parent().find('.password_to_edit_company').prop('disabled', true);
+        alert("Copied the text: " + copyText.val());
+      }
+    }
+  }
+
+  copyToClipboardCompany();
   copyToClipboard();
   deletePersonalPassword();
   deleteCompanyPassword();

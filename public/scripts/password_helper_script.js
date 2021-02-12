@@ -63,7 +63,7 @@ $(document).ready(function () {
         dismissAlert();
         return;
       }
-  
+
       if (!upperCaseVal && !lowerCaseVal && !numberCheckVal && !symbolVal) {
         fillAlertError(errors.checkBoxesEmpty);
         dismissAlert();

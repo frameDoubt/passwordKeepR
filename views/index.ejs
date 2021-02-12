@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- bootstrap Latest compiled and minified CSS -->
   <!-- Bootstrap CSS -->
@@ -49,9 +48,10 @@
                 <div class="input">
                   <input class="password_to_edit form-control" type="text" value="<%= users[user].password_text %>"
                     disabled="true" id="passwordInput">
-                  <button id="copyToClipboard" class="copy_password">Copy To Clipboard</button>
                 </div>
                 <div class="button-container">
+                  <button class="btn btn-outline-info copy_password">Copy</button>
+
                   <button class="btn btn-outline-danger remove_from_password_buttons" id="<%= users[user].id %>"
                     type="submit">Delete</button>
 
@@ -90,9 +90,11 @@
                 </div>
                 <div class="input">
                   <input class="password_to_edit_company form-control"  type="text" value="<%= users[user].password_text %>"
-                    disabled="true"></input>
+                    disabled="true" id="passwordInput"></input>
                 </div>
                 <div class="button-container">
+                  <button class="btn btn-outline-info copy_password_company">Copy</button>
+
                   <button class="btn btn-outline-danger remove_from_password_buttons_company"
                     id="<%= users[user].id %>" type="submit">Delete</button>
 
