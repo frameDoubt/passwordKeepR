@@ -53,6 +53,10 @@ h3.yeet {
   margin-top: 5px;
 }
 
+a.nav-link {
+  margin-left: 10px;
+}
+
 /* Write desktop only styles here */
 @media only screen and (max-width: 575px) {
   h5.navbar-header {
