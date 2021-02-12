@@ -4,12 +4,16 @@
  * https://stackoverflow.com/questions/11599666/get-the-value-of-checked-checkbox */
 $(document).ready(function () {
 
-
   /* https://stackoverflow.com/questions/10082330/dynamically-create-bootstrap-alerts-box-through-javascript
    * call the #alert_placeholder temp div and populate it with the boostrap banner */
   const fillAlert = function (notification) {
     console.log("ran!");
     $('#alert_placeholder').html('<div class="alert alert-primary" role="alert" style="position:abolute;z-index:999;">' + notification + '</div>');
+  };
+
+  const fillAlertError = function (notification) {
+    console.log("ran!");
+    $('#alert_placeholder').html('<div class="alert alert-danger" role="alert" style="position:abolute;z-index:999;">' + notification + '</div>');
   };
 
   /* when called, will dismiss any alerts after 3.7 seconds
@@ -23,6 +27,12 @@ $(document).ready(function () {
   };
 
   const createPassword = function () {
+
+    const errors = {
+      urlempty: "Sorry, you can't leave the URL firld empty. Try again!",
+      checkBoxesEmpty: "Sorry, you can't generate a password with all boxes unchcked. Try again!"
+    }
+
     $('#passwordLength').on('input', function () {
       $('#slider_value').html(this.value);
     });
@@ -48,6 +58,18 @@ $(document).ready(function () {
       const symbolVal = document.querySelector('#symbolsCheck').checked;
       const organisationName = document.querySelector('#orgName').value;
       const category = document.querySelector('#catName').value;
+
+      if (!url) {
+        fillAlertError(errors.urlempty);
+        dismissAlert();
+        return;
+      }
+  
+      if (!upperCaseVal && !lowerCaseVal && !numberCheckVal && !symbolVal) {
+        fillAlert(errors.checkBoxesEmpty);
+        dismissAlert();
+        return;
+      }
 
       $.ajax({
           method: 'POST', url: '/password_gen/', data: {
