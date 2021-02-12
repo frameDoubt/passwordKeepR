@@ -49,6 +49,11 @@ h5 {
   margin-bottom: 5px;
 }
 
+h5.navbar-header {
+  color: white;
+  margin-left: -60px;
+}
+
 h3 {
   font-family: 'Montserrat', sans-serif;
   margin-left: 42px;
@@ -92,4 +97,13 @@ button {
 
 .input {
   margin-top: 10px;
+}
+
+/* Write desktop only styles here */
+@media only screen and (max-width: 575px) {
+  h5.navbar-header {
+    color: white;
+    margin-left: -60px;
+    margin-bottom: 15px;
+  }
 }

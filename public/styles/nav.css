@@ -16,6 +16,11 @@ a:link, a:visited {
   color: white;
 }
 
+h5.navbar-header {
+  color: white;
+  margin-left: -55px;
+}
+
 .alert {
   position: relative;
   border: 1px solid transparent;
@@ -32,21 +37,8 @@ nav.scroll {
 }
 
 /* Write desktop only styles here */
-@media only screen and (min-width: 1024px) {
-  nav {
-    background-color:#4056A1 ;
-  }
+@media only screen and (min-width: 575px) {
 
-  .alert {
-    position: fixed;
-    margin-top: 7.5rem;
-    border: 1px solid transparent;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    right: 0;
-  }  
 }
 
 
