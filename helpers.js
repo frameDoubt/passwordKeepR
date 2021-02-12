@@ -131,7 +131,7 @@ const getUserOrganizations = function (userId) {
   const query = `
   SELECT DISTINCT organisations.name AS name
   FROM organisations
-  JOIN passwords ON passwords.organisations_id = organisations.id
+  JOIN users_organisations ON organisations.id = users_organisations.organisations_id
   WHERE user_id = ${userId};
   `
   return pool.query(query)
