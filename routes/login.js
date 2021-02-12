@@ -28,8 +28,7 @@ loginRoute.post("/", (req, res) => {
   const errors = {
     email: "Must provide email!",
     password: "Must provide password!",
-    emailNoExist: "Invalid email!",
-    invalidPassword: "Invalid Password!"
+    emailOrPwinvalid: "Email or Password is invalid!",
   };
 
   if (!email) {
@@ -46,7 +45,7 @@ loginRoute.post("/", (req, res) => {
   validUserEmail.then((value) => {
 
     if (!value) {
-      res.send(errors.emailNoExist);
+      res.send(errors.emailOrPwinvalid);
       throw new Error('email does not exist');
     } else {
       return passwordValidator(password, email);
@@ -54,7 +53,7 @@ loginRoute.post("/", (req, res) => {
   }).then((value) => {
 
     if (!value) {
-      res.send(errors.invalidPassword);
+      res.send(errors.emailOrPwinvalid);
       throw new Error('password does not exist');
     } else {
       req.session.user_id = value;
