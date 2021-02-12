@@ -26,7 +26,8 @@ $(document).ready(function () {
     }, 3000);
   };
 
-  const showForms = function () {
+  const createPassword = function () {
+   
     $('#passwordLength').on('input', function () {
       $('#slider_value').html(this.value);
     });
@@ -42,9 +43,7 @@ $(document).ready(function () {
       $('#pwordOptions').hide()
       $('#pwordLenRange2').show()
     })
-  }
 
-  const createPassword = function () {
     $('#pwordSubmission').on('click', function () {
       const errors = {
         urlempty: "Sorry. You can't leave the URL field empty. Try again!",
@@ -90,22 +89,24 @@ $(document).ready(function () {
         dismissAlert();
       });
     });
-  }
 
-  const typePassword = function () {
     $('#pwordSubmission2').on('click', function () {
       const errors = {
+        urlempty: "Sorry. You can't leave the URL field empty. Try again!",
         passwordEmpty: "Sorry. You can't create a password that is empty. Try again!"
-      };
-      const url = $('#urlInput2').val();
-      const password = document.querySelector('#passwordField2').value;
-      const organisationName = document.querySelector('#orgName2').value;
-      const category = document.querySelector('#catName2').value;
+      }
+      const url2 = $('#urlInput2').val();
+      const password2 = document.querySelector('#passwordField2').value;
+      const organisationName2 = document.querySelector('#orgName2').value;
+      const category2 = document.querySelector('#catName2').value;
 
-      console.log("password", password);
-      console.log("typeof password", typeof password);
+      if (!url2) {
+        fillAlertError(errors.passwordEmpty);
+        dismissAlert();
+        return;
+      }
 
-      if (password.length === 0) {
+      if (!password2) {
         fillAlertError(errors.passwordEmpty);
         dismissAlert();
         return;
@@ -113,10 +114,10 @@ $(document).ready(function () {
 
       $.ajax({
           method: 'POST', url: '/password_gen/', data: {
-          url: url,
-          organisationName: organisationName,
-          category: category,
-          password: password
+          url: url2,
+          organisationName: organisationName2,
+          category: category2,
+          password: password2
         }
       })
       .then(function (response) {
@@ -129,7 +130,5 @@ $(document).ready(function () {
   }
 
   createPassword();
-  typePassword();
-  showForms();
 });
 
