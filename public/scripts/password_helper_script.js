@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('#pwordSubmission').on('click', function () {
       const errors = {
         urlempty: "Sorry. You can't leave the URL field empty. Try again!",
-        checkBoxesEmpty: "Sorry. You can't generate a password with all boxes unchcked. Try again!"
+        checkBoxesEmpty: "Sorry. You can't generate a password with all boxes unchecked. Try again!"
       }
       const url = $('#urlInput').val();
       const passwordLength = $('#passwordLength').val();
