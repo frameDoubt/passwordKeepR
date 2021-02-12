@@ -171,7 +171,6 @@ $(document).ready(function () {
   deleteCompanyPassword();
   editPersonalPassword();
   editCompanyPassword();
-  highlightDivs();
 });
 
 
