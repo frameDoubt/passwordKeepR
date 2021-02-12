@@ -3,7 +3,7 @@ INSERT INTO passwords (user_id, organisations_id, category, url, password_text) 
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (1, 1, 'social', 'www.reddit.com', 'dlksaj87s');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (1, 2, 'work related', 'www.amazonworklogin.com', '09asj2d');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (2, 3, 'entertainment', 'www.youtube.com', 'fkjashfjaks8');
-INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (2, 3, 'social', 'www.4chan.com', '*2ksa292');
+INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (2, 3, 'social', 'www.tiktok.com', '*2ksa292');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (2, 3, 'work related', 'www.shopifydeveloperlogin.com', 'kjhasd72*^');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (3, 3, 'social', 'www.instagram.com', 'dkja8&j');
 INSERT INTO passwords (user_id, organisations_id, category, url, password_text) VALUES (3, 3, 'social', 'www.tweeter.com', 'dlsadasdfa');
